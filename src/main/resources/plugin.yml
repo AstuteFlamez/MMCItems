@@ -1,0 +1,10 @@
+name: MMCItems
+version: '${project.version}'
+main: mandomc.mmcitems.MMCItems
+api-version: 1.19
+load: STARTUP
+authors: [ AstuteFlamez ]
+description: An items plugin for MandoMC.
+commands:
+  recipes:
+    aliases: [lightsaber, lightsabers]
