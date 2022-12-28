@@ -26,8 +26,8 @@ public class RecipesCommand implements CommandExecutor {
             Player player = (Player) sender;
             Inventory recipes = Bukkit.createInventory(player,9, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "MandoMC Recipes");
 
-            recipes.setItem(0, ISC.createItem(Material.NETHERITE_SWORD,ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Weapon Recipes",  0, ChatColor.GRAY + "Inside you will find weapons from a more civilized age!"));
-            recipes.setItem(1, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&2&lParts Recipes"),1,ChatColor.GRAY + "Use these recipes to create larger items!"));
+            recipes.setItem(0, ISC.createItem(Material.NETHERITE_SWORD,ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Weapon Recipes", 1, ChatColor.GRAY + "Inside you will find weapons from a more civilized age!"));
+            recipes.setItem(1, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&2&lParts Recipes"),2,ChatColor.GRAY + "Use these recipes to create larger items!"));
             recipes.setItem(8, close);
 
             player.openInventory(recipes);

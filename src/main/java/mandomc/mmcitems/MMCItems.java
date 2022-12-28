@@ -1,11 +1,11 @@
 package mandomc.mmcitems;
 
 import mandomc.mmcitems.commands.RecipesCommand;
-import mandomc.mmcitems.handlers.VehicleTask;
+import mandomc.mmcitems.handlers.ShipsRunnable;
 import mandomc.mmcitems.listeners.LightsaberThrow;
 import mandomc.mmcitems.listeners.RecipeGUI;
 import mandomc.mmcitems.listeners.attachments.RebreatherEnchantment;
-import mandomc.mmcitems.listeners.vehicles.XWing;
+import mandomc.mmcitems.listeners.vehicles.Ships;
 import mandomc.mmcitems.recipes.Recipes;
 import org.bukkit.ChatColor;
 import org.bukkit.NamespacedKey;
@@ -43,7 +43,7 @@ public final class MMCItems extends JavaPlugin implements Listener {
 
         instance = this;
 
-        BukkitTask vehicleTask = new VehicleTask(this).runTaskTimer(this, 0L, 5L);
+        BukkitTask vehicleTask = new ShipsRunnable(this).runTaskTimer(this, 0L, 1L);
 
         try{
             try {
@@ -64,7 +64,7 @@ public final class MMCItems extends JavaPlugin implements Listener {
 
         getCommand("recipes").setExecutor(new RecipesCommand());
 
-        getServer().getPluginManager().registerEvents(new XWing(), this);
+        getServer().getPluginManager().registerEvents(new Ships(lightsaberCooldown), this);
         getServer().getPluginManager().registerEvents(new RecipeGUI(this), this);
         getServer().getPluginManager().registerEvents(new LightsaberThrow(lightsaberCooldown), this);
         getServer().getPluginManager().registerEvents(new RebreatherEnchantment(new NamespacedKey(this, "rebreather")), this);

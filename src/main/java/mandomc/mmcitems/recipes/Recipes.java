@@ -22,7 +22,7 @@ public class Recipes {
         ItemStack crossGuardHilt = new ItemStack(Material.WOODEN_SWORD);
         ItemMeta crossGuardMeta = crossGuardHilt.getItemMeta();
         crossGuardMeta.setDisplayName(ChatColor.GRAY + "Crossguard Hilt");
-        crossGuardMeta.setCustomModelData(2);
+        crossGuardMeta.setCustomModelData(3);
         crossGuardMeta.setUnbreakable(true);
         crossGuardMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         crossGuardHilt.setItemMeta(crossGuardMeta);
@@ -40,7 +40,7 @@ public class Recipes {
         ItemStack doubleBladedHilt = new ItemStack(Material.WOODEN_SWORD);
         ItemMeta doubleBladedHiltItemMeta = doubleBladedHilt.getItemMeta();
         doubleBladedHiltItemMeta.setDisplayName(ChatColor.GRAY + "Double-Bladed Hilt");
-        doubleBladedHiltItemMeta.setCustomModelData(3);
+        doubleBladedHiltItemMeta.setCustomModelData(4);
         doubleBladedHiltItemMeta.setUnbreakable(true);
         doubleBladedHiltItemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         doubleBladedHilt.setItemMeta(doubleBladedHiltItemMeta);
@@ -56,7 +56,7 @@ public class Recipes {
         ItemStack singleBladedHilt = new ItemStack(Material.WOODEN_SWORD);
         ItemMeta singleBladedHiltItemMeta = singleBladedHilt.getItemMeta();
         singleBladedHiltItemMeta.setDisplayName(ChatColor.GRAY + "Single-Bladed Hilt");
-        singleBladedHiltItemMeta.setCustomModelData(4);
+        singleBladedHiltItemMeta.setCustomModelData(5);
         singleBladedHiltItemMeta.setUnbreakable(true);
         singleBladedHiltItemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         singleBladedHilt.setItemMeta(singleBladedHiltItemMeta);
@@ -81,26 +81,26 @@ public class Recipes {
         coreRecipe.setIngredient('I', Material.IRON_INGOT);
         Bukkit.getServer().addRecipe(coreRecipe);
 
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lCrossguard Lightsaber"), 12, "redcrossguardlightsaber", Material.RED_STAINED_GLASS_PANE, core, crossGuardHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lCrossguard Lightsaber"), 13, "bluecrossguardlightsaber", Material.BLUE_STAINED_GLASS_PANE, core, crossGuardHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lCrossguard Lightsaber"), 14, "greencrossguardlightsaber", Material.GREEN_STAINED_GLASS_PANE, core, crossGuardHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lCrossguard Lightsaber"), 15, "purplecrossguardlightsaber", Material.PURPLE_STAINED_GLASS_PANE, core, crossGuardHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lCrossguard Lightsaber"), 16, "yellowcrossguardlightsaber", Material.YELLOW_STAINED_GLASS_PANE, core, crossGuardHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lCrossguard Lightsaber"), 17, "whitecrossguardlightsaber", Material.WHITE_STAINED_GLASS_PANE, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lCrossguard Lightsaber"), 13, "redcrossguardlightsaber", Material.RED_STAINED_GLASS_PANE, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lCrossguard Lightsaber"), 14, "bluecrossguardlightsaber", Material.BLUE_STAINED_GLASS_PANE, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lCrossguard Lightsaber"), 15, "greencrossguardlightsaber", Material.GREEN_STAINED_GLASS_PANE, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lCrossguard Lightsaber"), 16, "purplecrossguardlightsaber", Material.PURPLE_STAINED_GLASS_PANE, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lCrossguard Lightsaber"), 17, "yellowcrossguardlightsaber", Material.YELLOW_STAINED_GLASS_PANE, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lCrossguard Lightsaber"), 18, "whitecrossguardlightsaber", Material.WHITE_STAINED_GLASS_PANE, core, crossGuardHilt);
 
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lDouble-Bladed Lightsaber"), 0, "reddoublebladedlightsaber", Material.RED_STAINED_GLASS_PANE, core, doubleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lDouble-Bladed Lightsaber"), 1, "bluedoublebladedlightsaber", Material.BLUE_STAINED_GLASS_PANE, core, doubleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lDouble-Bladed Lightsaber"), 2, "greendoublebladedlightsaber", Material.GREEN_STAINED_GLASS_PANE, core, doubleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lDouble-Bladed Lightsaber"), 3, "purpledoublebladedlightsaber", Material.PURPLE_STAINED_GLASS_PANE, core, doubleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lDouble-Bladed Lightsaber"), 4, "yellowdoublebladedlightsaber", Material.YELLOW_STAINED_GLASS_PANE, core, doubleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lDouble-Bladed Lightsaber"), 5, "whitedoublebladedlightsaber", Material.WHITE_STAINED_GLASS_PANE, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lDouble-Bladed Lightsaber"), 1, "reddoublebladedlightsaber", Material.RED_STAINED_GLASS_PANE, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lDouble-Bladed Lightsaber"), 2, "bluedoublebladedlightsaber", Material.BLUE_STAINED_GLASS_PANE, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lDouble-Bladed Lightsaber"), 3, "greendoublebladedlightsaber", Material.GREEN_STAINED_GLASS_PANE, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lDouble-Bladed Lightsaber"), 4, "purpledoublebladedlightsaber", Material.PURPLE_STAINED_GLASS_PANE, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lDouble-Bladed Lightsaber"), 5, "yellowdoublebladedlightsaber", Material.YELLOW_STAINED_GLASS_PANE, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lDouble-Bladed Lightsaber"), 6, "whitedoublebladedlightsaber", Material.WHITE_STAINED_GLASS_PANE, core, doubleBladedHilt);
 
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lSingle-Bladed Lightsaber"), 6, "redsinglebladedlightsaber", Material.RED_STAINED_GLASS_PANE, core, singleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lSingle-Bladed Lightsaber"), 7, "bluesinglebladedlightsaber", Material.BLUE_STAINED_GLASS_PANE, core, singleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lSingle-Bladed Lightsaber"), 8, "greensinglebladedlightsaber", Material.GREEN_STAINED_GLASS_PANE, core, singleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lSingle-Bladed Lightsaber"), 9, "purplesinglebladedlightsaber", Material.PURPLE_STAINED_GLASS_PANE, core, singleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lSingle-Bladed Lightsaber"), 10, "yellowsinglebladedlightsaber", Material.YELLOW_STAINED_GLASS_PANE, core, singleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lSingle-Bladed Lightsaber"), 11, "whitesinglebladedlightsaber", Material.WHITE_STAINED_GLASS_PANE, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lSingle-Bladed Lightsaber"), 7, "redsinglebladedlightsaber", Material.RED_STAINED_GLASS_PANE, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lSingle-Bladed Lightsaber"), 8, "bluesinglebladedlightsaber", Material.BLUE_STAINED_GLASS_PANE, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lSingle-Bladed Lightsaber"), 9, "greensinglebladedlightsaber", Material.GREEN_STAINED_GLASS_PANE, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lSingle-Bladed Lightsaber"), 10, "purplesinglebladedlightsaber", Material.PURPLE_STAINED_GLASS_PANE, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lSingle-Bladed Lightsaber"), 11, "yellowsinglebladedlightsaber", Material.YELLOW_STAINED_GLASS_PANE, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lSingle-Bladed Lightsaber"), 12, "whitesinglebladedlightsaber", Material.WHITE_STAINED_GLASS_PANE, core, singleBladedHilt);
 
 
     }
