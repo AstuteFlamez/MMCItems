@@ -37,9 +37,9 @@ public class ShipsRunnable extends BukkitRunnable {
                         Entity seat1 = tieFighter.getSeat1();
                         seat1.setRotation(player.getLocation().getYaw(), player.getLocation().getPitch());
                         seat1.setVelocity(seat1.getLocation().getDirection().multiply(2));
-                        Entity model = tieFighter.getModel();
-                        model.teleport(seat1.getLocation());
-                        model.setRotation(player.getLocation().getYaw(), player.getLocation().getPitch());
+                        //Entity model = tieFighter.getModel();
+                        //model.teleport(seat1.getLocation());
+                        //model.setRotation(player.getLocation().getYaw(), player.getLocation().getPitch());
                     }
                 }
             }

@@ -82,6 +82,7 @@ public class TieFighter implements Listener {
             //tieFighter.setSeat1(seat1);
             //tieFighter.setModel(model);
 
+            VehicleEvents.armorStandsInShip.add(tieFighter.getSeat1());
             VehicleEvents.entitiesInShip.add(tieFighter.getSeat1());
             //VehicleEvents.entitiesInShip.add(tieFighter.getSeat1());
             //VehicleEvents.entitiesInShip.add(tieFighter.getModel());
@@ -117,6 +118,7 @@ public class TieFighter implements Listener {
 
         Entity seat1 = tieFighter.getSeat1();
 
+        VehicleEvents.armorStandsInShip.remove(seat1);
         VehicleEvents.entitiesInShip.remove(seat1);
 
         //Entity seat1 = tieFighter.getSeat1();
