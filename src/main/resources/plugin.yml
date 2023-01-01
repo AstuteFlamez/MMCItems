@@ -5,6 +5,11 @@ api-version: 1.19
 load: STARTUP
 authors: [ AstuteFlamez ]
 description: An items plugin for MandoMC.
+depend: [WorldGuard]
 commands:
   recipes:
     aliases: [lightsaber, lightsabers]
+  mmcget:
+    aliases: [itemget]
+  mmcgive:
+    aliases: [itemgive]

@@ -1,5 +1,6 @@
 package mandomc.mmcitems.recipes;
 
+import mandomc.mmcitems.handlers.GI;
 import mandomc.mmcitems.handlers.LISC;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -19,31 +20,49 @@ public class Recipes {
 
     private static void createRecipe(){
 
-        ItemStack crossGuardHilt = new ItemStack(Material.WOODEN_SWORD);
-        ItemMeta crossGuardMeta = crossGuardHilt.getItemMeta();
-        crossGuardMeta.setDisplayName(ChatColor.GRAY + "Crossguard Hilt");
-        crossGuardMeta.setCustomModelData(3);
-        crossGuardMeta.setUnbreakable(true);
-        crossGuardMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        crossGuardHilt.setItemMeta(crossGuardMeta);
-        ShapedRecipe recipe = new ShapedRecipe(NamespacedKey.minecraft("crossguardhilt"), crossGuardHilt);
-        recipe.shape("SN ",
+        ItemStack redKyber = GI.redKyber();
+        ShapedRecipe redKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("redkyber"), redKyber);
+        redKyberRecipe.shape("PPP", "PKP", "PPP");
+        redKyberRecipe.setIngredient('P', Material.RED_STAINED_GLASS_PANE);
+        redKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.whiteKyber()));
+
+        ItemStack blueKyber = GI.redKyber();
+        ShapedRecipe blueKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("bluekyber"), blueKyber);
+        blueKyberRecipe.shape("PPP", "PKP", "PPP");
+        blueKyberRecipe.setIngredient('P', Material.BLUE_BANNER);
+        blueKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.whiteKyber()));
+
+        ItemStack greenKyber = GI.redKyber();
+        ShapedRecipe greenKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("greenkyber"), greenKyber);
+        greenKyberRecipe.shape("PPP", "PKP", "PPP");
+        greenKyberRecipe.setIngredient('P', Material.RED_STAINED_GLASS_PANE);
+        greenKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.whiteKyber()));
+
+        ItemStack purpleKyber = GI.redKyber();
+        ShapedRecipe purpleKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("purplekyber"), purpleKyber);
+        purpleKyberRecipe.shape("PPP", "PKP", "PPP");
+        purpleKyberRecipe.setIngredient('P', Material.PURPLE_STAINED_GLASS_PANE);
+        purpleKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.whiteKyber()));
+
+        ItemStack yellowKyber = GI.redKyber();
+        ShapedRecipe yellowKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("yellowkyber"), yellowKyber);
+        yellowKyberRecipe.shape("PPP", "PKP", "PPP");
+        yellowKyberRecipe.setIngredient('P', Material.YELLOW_STAINED_GLASS_PANE);
+        yellowKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.whiteKyber()));
+
+        ItemStack crossGuardHilt = GI.crossGuardHilt();
+        ShapedRecipe crossGuardHiltRecipe = new ShapedRecipe(NamespacedKey.minecraft("crossguardhilt"), crossGuardHilt);
+        crossGuardHiltRecipe.shape("SN ",
                 "NIR",
                 " GN");
-        recipe.setIngredient('S', Material.NETHERITE_SCRAP);
-        recipe.setIngredient('N', Material.NETHERITE_INGOT);
-        recipe.setIngredient('I', Material.IRON_INGOT);
-        recipe.setIngredient('R', Material.REDSTONE);
-        recipe.setIngredient('G', Material.GLOWSTONE);
-        Bukkit.getServer().addRecipe(recipe);
+        crossGuardHiltRecipe.setIngredient('S', Material.NETHERITE_SCRAP);
+        crossGuardHiltRecipe.setIngredient('N', Material.NETHERITE_INGOT);
+        crossGuardHiltRecipe.setIngredient('I', Material.IRON_INGOT);
+        crossGuardHiltRecipe.setIngredient('R', Material.REDSTONE);
+        crossGuardHiltRecipe.setIngredient('G', Material.GLOWSTONE);
+        Bukkit.getServer().addRecipe(crossGuardHiltRecipe);
 
-        ItemStack doubleBladedHilt = new ItemStack(Material.WOODEN_SWORD);
-        ItemMeta doubleBladedHiltItemMeta = doubleBladedHilt.getItemMeta();
-        doubleBladedHiltItemMeta.setDisplayName(ChatColor.GRAY + "Double-Bladed Hilt");
-        doubleBladedHiltItemMeta.setCustomModelData(4);
-        doubleBladedHiltItemMeta.setUnbreakable(true);
-        doubleBladedHiltItemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        doubleBladedHilt.setItemMeta(doubleBladedHiltItemMeta);
+        ItemStack doubleBladedHilt = GI.doubleBladedHilt();
         ShapedRecipe doubleBladedHiltRecipe = new ShapedRecipe(NamespacedKey.minecraft("doublebladedhilt"), doubleBladedHilt);
         doubleBladedHiltRecipe.shape("NI ",
                 "IRI",
@@ -53,13 +72,7 @@ public class Recipes {
         doubleBladedHiltRecipe.setIngredient('R', Material.REDSTONE);
         Bukkit.getServer().addRecipe(doubleBladedHiltRecipe);
 
-        ItemStack singleBladedHilt = new ItemStack(Material.WOODEN_SWORD);
-        ItemMeta singleBladedHiltItemMeta = singleBladedHilt.getItemMeta();
-        singleBladedHiltItemMeta.setDisplayName(ChatColor.GRAY + "Single-Bladed Hilt");
-        singleBladedHiltItemMeta.setCustomModelData(5);
-        singleBladedHiltItemMeta.setUnbreakable(true);
-        singleBladedHiltItemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        singleBladedHilt.setItemMeta(singleBladedHiltItemMeta);
+        ItemStack singleBladedHilt = GI.singleBladedHilt();
         ShapedRecipe singleBladedHiltRecipe = new ShapedRecipe(NamespacedKey.minecraft("singlebladedhilt"), singleBladedHilt);
         singleBladedHiltRecipe.shape("NR ",
                 "IIN",
@@ -69,10 +82,7 @@ public class Recipes {
         singleBladedHiltRecipe.setIngredient('R', Material.REDSTONE);
         Bukkit.getServer().addRecipe(singleBladedHiltRecipe);
 
-        ItemStack core = new ItemStack(Material.BEACON);
-        ItemMeta coreMeta = core.getItemMeta();
-        coreMeta.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&b&lLightsaber Core"));
-        core.setItemMeta(coreMeta);
+        ItemStack core = GI.lightsaberCore();
         ShapedRecipe coreRecipe = new ShapedRecipe(NamespacedKey.minecraft("core"), core);
         coreRecipe.shape("INI", "BSB", "INI");
         coreRecipe.setIngredient('S', Material.NETHER_STAR);
@@ -81,26 +91,26 @@ public class Recipes {
         coreRecipe.setIngredient('I', Material.IRON_INGOT);
         Bukkit.getServer().addRecipe(coreRecipe);
 
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lCrossguard Lightsaber"), 13, "redcrossguardlightsaber", Material.RED_STAINED_GLASS_PANE, core, crossGuardHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lCrossguard Lightsaber"), 14, "bluecrossguardlightsaber", Material.BLUE_STAINED_GLASS_PANE, core, crossGuardHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lCrossguard Lightsaber"), 15, "greencrossguardlightsaber", Material.GREEN_STAINED_GLASS_PANE, core, crossGuardHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lCrossguard Lightsaber"), 16, "purplecrossguardlightsaber", Material.PURPLE_STAINED_GLASS_PANE, core, crossGuardHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lCrossguard Lightsaber"), 17, "yellowcrossguardlightsaber", Material.YELLOW_STAINED_GLASS_PANE, core, crossGuardHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lCrossguard Lightsaber"), 18, "whitecrossguardlightsaber", Material.WHITE_STAINED_GLASS_PANE, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lCrossguard Lightsaber"), 13, "redcrossguardlightsaber", redKyber, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lCrossguard Lightsaber"), 14, "bluecrossguardlightsaber", blueKyber, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lCrossguard Lightsaber"), 15, "greencrossguardlightsaber", greenKyber, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lCrossguard Lightsaber"), 16, "purplecrossguardlightsaber", purpleKyber, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lCrossguard Lightsaber"), 17, "yellowcrossguardlightsaber", yellowKyber, core, crossGuardHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lCrossguard Lightsaber"), 18, "whitecrossguardlightsaber", GI.whiteKyber(), core, crossGuardHilt);
 
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lDouble-Bladed Lightsaber"), 1, "reddoublebladedlightsaber", Material.RED_STAINED_GLASS_PANE, core, doubleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lDouble-Bladed Lightsaber"), 2, "bluedoublebladedlightsaber", Material.BLUE_STAINED_GLASS_PANE, core, doubleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lDouble-Bladed Lightsaber"), 3, "greendoublebladedlightsaber", Material.GREEN_STAINED_GLASS_PANE, core, doubleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lDouble-Bladed Lightsaber"), 4, "purpledoublebladedlightsaber", Material.PURPLE_STAINED_GLASS_PANE, core, doubleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lDouble-Bladed Lightsaber"), 5, "yellowdoublebladedlightsaber", Material.YELLOW_STAINED_GLASS_PANE, core, doubleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lDouble-Bladed Lightsaber"), 6, "whitedoublebladedlightsaber", Material.WHITE_STAINED_GLASS_PANE, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lDouble-Bladed Lightsaber"), 1, "reddoublebladedlightsaber", redKyber, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lDouble-Bladed Lightsaber"), 2, "bluedoublebladedlightsaber", blueKyber, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lDouble-Bladed Lightsaber"), 3, "greendoublebladedlightsaber", greenKyber, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lDouble-Bladed Lightsaber"), 4, "purpledoublebladedlightsaber", purpleKyber, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lDouble-Bladed Lightsaber"), 5, "yellowdoublebladedlightsaber", yellowKyber, core, doubleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lDouble-Bladed Lightsaber"), 6, "whitedoublebladedlightsaber", GI.whiteKyber(), core, doubleBladedHilt);
 
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lSingle-Bladed Lightsaber"), 7, "redsinglebladedlightsaber", Material.RED_STAINED_GLASS_PANE, core, singleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lSingle-Bladed Lightsaber"), 8, "bluesinglebladedlightsaber", Material.BLUE_STAINED_GLASS_PANE, core, singleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lSingle-Bladed Lightsaber"), 9, "greensinglebladedlightsaber", Material.GREEN_STAINED_GLASS_PANE, core, singleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lSingle-Bladed Lightsaber"), 10, "purplesinglebladedlightsaber", Material.PURPLE_STAINED_GLASS_PANE, core, singleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lSingle-Bladed Lightsaber"), 11, "yellowsinglebladedlightsaber", Material.YELLOW_STAINED_GLASS_PANE, core, singleBladedHilt);
-        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lSingle-Bladed Lightsaber"), 12, "whitesinglebladedlightsaber", Material.WHITE_STAINED_GLASS_PANE, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&c&lSingle-Bladed Lightsaber"), 7, "redsinglebladedlightsaber", redKyber, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&9&lSingle-Bladed Lightsaber"), 8, "bluesinglebladedlightsaber", blueKyber, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&a&lSingle-Bladed Lightsaber"), 9, "greensinglebladedlightsaber", greenKyber, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&5&lSingle-Bladed Lightsaber"), 10, "purplesinglebladedlightsaber", purpleKyber, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&e&lSingle-Bladed Lightsaber"), 11, "yellowsinglebladedlightsaber", yellowKyber, core, singleBladedHilt);
+        LISC.createItem(ChatColor.translateAlternateColorCodes('&', "&f&lSingle-Bladed Lightsaber"), 12, "whitesinglebladedlightsaber", GI.whiteKyber(), core, singleBladedHilt);
 
 
     }

@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class LISC {
 
-    public static ItemStack createItem(String displayName, int customModelData, String nameSpacedKey, Material material, ItemStack core, ItemStack hilt){
+    public static ItemStack createItem(String displayName, int customModelData, String nameSpacedKey, ItemStack kyber, ItemStack core, ItemStack hilt){
 
         ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
         ItemMeta iM = i.getItemMeta();
@@ -39,7 +39,7 @@ public class LISC {
         recipe.shape(" C ",
                 " L ",
                 " H ");
-        recipe.setIngredient('C', material);
+        recipe.setIngredient('C', new RecipeChoice.ExactChoice(kyber));
         recipe.setIngredient('L', new RecipeChoice.ExactChoice(core));
         recipe.setIngredient('H', new RecipeChoice.ExactChoice(hilt));
         Bukkit.getServer().addRecipe(recipe);
