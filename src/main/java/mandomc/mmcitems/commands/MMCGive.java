@@ -21,18 +21,18 @@ public class MMCGive implements CommandExecutor {
                     String playerName = args[0];
                     Player target = Bukkit.getServer().getPlayerExact(playerName);
 
-                    if(args[1].equalsIgnoreCase("whiteKyber")){
+                    if(args[1].equalsIgnoreCase("kyberite")){
                         if(target == null){
                             player.sendMessage(ChatColor.RED + "You did not provide an online player!");
                         }else{
-                            player.getInventory().addItem(GI.whiteKyber());
-                            player.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7Congras you defeats the &6Rancor Boss &7and it gave you a white kyber crystal from it's belly!"));
+                            target.getInventory().addItem(GI.kyberite());
+                            target.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7Congras you defeats the &6Rancor Boss &7and it gave you a white kyber crystal from it's belly!"));
                         }
                     }else{
-                        System.out.println("Incorrect Syntax! /mmcgive <onlinePlayer> <item>");
+                        player.sendMessage("Incorrect Syntax! /mmcgive <onlinePlayer> <item>");
                     }
                 }else{
-                    System.out.println("Incorrect Syntax! /mmcgive <onlinePlayer> <item>");
+                    player.sendMessage("Incorrect Syntax! /mmcgive <onlinePlayer> <item>");
                 }
             }else{
                 player.sendMessage(ChatColor.RED + "The force is not with you...");
@@ -42,18 +42,18 @@ public class MMCGive implements CommandExecutor {
                 String playerName = args[0];
                 Player target = Bukkit.getServer().getPlayerExact(playerName);
 
-                if(args[1].equalsIgnoreCase("whiteKyber")){
+                if(args[1].equalsIgnoreCase("kyberite")){
                     if(target == null){
-                        System.out.println("You did not provide an online player!");
+                        Bukkit.getServer().getConsoleSender().sendMessage("You did not provide an online player");
                     }else{
-                        target.getInventory().addItem(GI.whiteKyber());
+                        target.getInventory().addItem(GI.kyberite());
                         target.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7Congras you defeats the &6Rancor Boss &7and it gave you a white kyber crystal from it's belly!"));
                     }
                 }else{
-                    System.out.println("Incorrect Syntax! /mmcgive <onlinePlayer> <item>");
+                    Bukkit.getServer().getConsoleSender().sendMessage("Incorrect Syntax! /mmcgive <onlinePlayer> <item>");
                 }
             }else{
-                System.out.println("Incorrect Syntax! /mmcgive <onlinePlayer> <item>");
+                Bukkit.getServer().getConsoleSender().sendMessage("Incorrect Syntax! /mmcgive <onlinePlayer> <item>");
             }
         }
 

@@ -46,36 +46,25 @@ public class XWing implements Listener {
 
             Location loc = new Location(player.getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ());
 
-            Entity seat1 = player.getWorld().spawnEntity(loc, EntityType.PHANTOM);
-            Entity model = player.getWorld().spawnEntity(loc, EntityType.ZOMBIE);
+            Entity seat1 = player.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
 
             int slot = player.getInventory().getHeldItemSlot();
             player.getInventory().setItem(slot, new ItemStack(Material.AIR));
 
-            LivingEntity livingSeat1 = (Phantom) seat1;
-            LivingEntity livingModel = (Zombie) model;
+            ArmorStand armorStandSeat1 = (ArmorStand) seat1;
 
-            livingSeat1.setAI(false);
-            livingSeat1.setInvisible(true);
-            livingSeat1.setSilent(true);
-            livingSeat1.setCollidable(false);
-            livingSeat1.setRotation(player.getLocation().getYaw(), 0);
-
-            livingModel.getEquipment().setHelmet(GI.xWing(), true);
-            livingModel.setInvisible(true);
-            livingModel.setCollidable(false);
-            livingModel.setAI(false);
-            livingModel.setSilent(true);
-            livingModel.setRotation(player.getLocation().getYaw(), 0);
+            armorStandSeat1.setInvulnerable(true);
+            armorStandSeat1.setGravity(true);
+            armorStandSeat1.setInvisible(true);
+            armorStandSeat1.setCollidable(true);
+            armorStandSeat1.setRotation(player.getLocation().getYaw(), 0);
+            armorStandSeat1.setHelmet(GI.tieFighter());
 
             player.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7You spawned in your &cX-Wing Starfighter&7!"));
 
             xWing.setSeat1(seat1);
-            xWing.setModel(model);
 
-            VehicleEvents.entitiesInShip.add(xWing.getSeat1());
-            VehicleEvents.entitiesInShip.add(xWing.getModel());
-
+            VehicleEvents.armorStandsInShip.add(xWing.getSeat1());
         }else{
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou cannot spawn in your X-Wing Starfighter here!"));
         }
@@ -88,10 +77,8 @@ public class XWing implements Listener {
         VehicleEvents.playersInShip.add(xWing.getPilot());
 
         Entity seat1 = xWing.getSeat1();
-
-        LivingEntity livingSeat1 = (Phantom) seat1;
-        livingSeat1.addPassenger(player);
-        livingSeat1.setAI(true);
+        ArmorStand armorStandSeat1 = (ArmorStand) seat1;
+        armorStandSeat1.addPassenger(player);
 
         player.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7You mounted your &cX-Wing Starfighter&7!"));
     }
@@ -99,10 +86,8 @@ public class XWing implements Listener {
     public void removeShip(Player player, Vehicle xWing){
 
         Entity seat1 = xWing.getSeat1();
-        Entity model = xWing.getModel();
 
-        VehicleEvents.entitiesInShip.remove(seat1);
-        VehicleEvents.entitiesInShip.remove(model);
+        VehicleEvents.armorStandsInShip.remove(seat1);
 
         allXWings.remove(xWing);
 
@@ -113,7 +98,6 @@ public class XWing implements Listener {
         xWing.setModel(null);
 
         seat1.remove();
-        model.remove();
 
         player.getInventory().addItem(GI.xWing());
 
@@ -197,7 +181,7 @@ public class XWing implements Listener {
         Player player = event.getPlayer();
 
         for(Vehicle xWing: getAllXWings()){
-            if(xWing.getSeat1() == entity || xWing.getModel() == entity){
+            if(xWing.getSeat1() == entity){
                 openGUI(player, xWing);
             }
         }
@@ -210,7 +194,7 @@ public class XWing implements Listener {
 
         List<Vehicle> allXWindsCopy = new ArrayList<>(getAllXWings());
         for(Vehicle xWing: allXWindsCopy){
-            if((xWing.getSeat1() == entity || xWing.getModel() == entity) && event.getEntity() instanceof Player){
+            if(xWing.getSeat1() == entity && event.getEntity() instanceof Player){
                 Player player = (Player) event.getEntity();
                 removeShip(player, xWing);
             }
@@ -228,7 +212,9 @@ public class XWing implements Listener {
                     switch (event.getCurrentItem().getItemMeta().getCustomModelData()){
                         case 1:
                             player.closeInventory();
-                            rideShip(player, xWing);
+                            if(xWing.getSeat1().getPassengers().isEmpty()){
+                                rideShip(player, xWing);
+                            }
                             break;
                     }
                 }

@@ -12,9 +12,20 @@ public class IC {
         Inventory recipes = Bukkit.createInventory(player, 9, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "MandoMC Recipes");
 
         recipes.setItem(0, ISC.createItem(Material.NETHERITE_SWORD, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Weapon Recipes", 1, ChatColor.GRAY + "Inside you will find weapons from a more civilized age!"));
-        recipes.setItem(1, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&2&lParts Recipes"),2,ChatColor.GRAY + "Use these recipes to create larger items!"));
+        recipes.setItem(1, ISC.createItem(Material.WOODEN_SWORD, ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "Vehicle Recipes", 1, ChatColor.GRAY + "Fly away!"));
+        recipes.setItem(2, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&2&lPart Recipes"),2,ChatColor.GRAY + "Use these recipes to create larger items!"));
         recipes.setItem(8, ISC.createItem(Material.BARRIER, ChatColor.translateAlternateColorCodes('&', "&c&lCLOSE")));
         return recipes;
+    }
+
+    public static Inventory vehicles(Player player){
+        Inventory vehicles = Bukkit.createInventory(player, 9, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Vehicle Recipes");
+
+        vehicles.setItem(0, ISC.createItem(Material.WOODEN_SWORD, ChatColor.RED + "X-Wing Starfighter", 6, ChatColor.GRAY + "Coming January 23rd!"));
+        vehicles.setItem(1, ISC.createItem(Material.WOODEN_HOE, ChatColor.BLACK + "Tie-Fighter", 4, ChatColor.GRAY + "Coming soon..."));
+        vehicles.setItem(7, ISC.createItem(Material.ARROW, ChatColor.RED + "" + ChatColor.BOLD + "Back", ChatColor.GRAY + "Click to go back!"));
+        vehicles.setItem(8, ISC.createItem(Material.BARRIER, ChatColor.translateAlternateColorCodes('&', "&c&lCLOSE")));
+        return vehicles;
     }
 
     public static Inventory weapons(Player player){
@@ -27,7 +38,7 @@ public class IC {
     }
 
     public static Inventory parts(Player player){
-        Inventory parts = Bukkit.createInventory(player, 9, ChatColor.translateAlternateColorCodes('&', "&2&lParts Recipes"));
+        Inventory parts = Bukkit.createInventory(player, 9, ChatColor.translateAlternateColorCodes('&', "&2&lPart Recipes"));
 
         parts.setItem(0, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&7Crossguard Hilt"), 3));
         parts.setItem(1, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&7Double-Bladed Hilt"), 4));

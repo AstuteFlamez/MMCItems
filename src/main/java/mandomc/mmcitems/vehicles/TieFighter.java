@@ -11,6 +11,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractAtEntityEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.Inventory;
@@ -47,45 +48,24 @@ public class TieFighter implements Listener {
             Location loc = new Location(player.getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ());
 
             Entity seat1 = player.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
-            //Entity seat1 = player.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
-            //Entity model = player.getWorld().spawnEntity(loc, EntityType.ZOMBIE);
 
             int slot = player.getInventory().getHeldItemSlot();
             player.getInventory().setItem(slot, new ItemStack(Material.AIR));
 
             ArmorStand armorStandSeat1 = (ArmorStand) seat1;
-            //LivingEntity livingSeat1 = (Phantom) seat1;
-            //LivingEntity livingModel = (Zombie) model;
 
             armorStandSeat1.setInvulnerable(true);
-            armorStandSeat1.setGravity(false);
+            armorStandSeat1.setGravity(true);
+            armorStandSeat1.setInvisible(true);
             armorStandSeat1.setCollidable(true);
             armorStandSeat1.setRotation(player.getLocation().getYaw(), 0);
             armorStandSeat1.setHelmet(GI.tieFighter());
 
-            //livingSeat1.setAI(false);
-            //livingSeat1.setInvisible(true);
-            //livingSeat1.setSilent(true);
-            //livingSeat1.setCollidable(false);
-            //livingSeat1.setRotation(player.getLocation().getYaw(), 0);
-
-            //livingModel.getEquipment().setHelmet(GI.tieFighter(), true);
-            //livingModel.setInvisible(true);
-            //livingModel.setCollidable(false);
-            //livingModel.setAI(false);
-            //livingModel.setSilent(true);
-            //livingModel.setRotation(player.getLocation().getYaw(), 0);
-
             player.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7You spawned in your &8Tie-Fighter&7!"));
 
             tieFighter.setSeat1(seat1);
-            //tieFighter.setSeat1(seat1);
-            //tieFighter.setModel(model);
 
             VehicleEvents.armorStandsInShip.add(tieFighter.getSeat1());
-            VehicleEvents.entitiesInShip.add(tieFighter.getSeat1());
-            //VehicleEvents.entitiesInShip.add(tieFighter.getSeat1());
-            //VehicleEvents.entitiesInShip.add(tieFighter.getModel());
 
         }else{
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou cannot spawn in your &8Tie-Fighter &chere!"));
@@ -99,17 +79,8 @@ public class TieFighter implements Listener {
         VehicleEvents.playersInShip.add(tieFighter.getPilot());
 
         Entity seat1 = tieFighter.getSeat1();
-
         ArmorStand armorStandSeat1 = (ArmorStand) seat1;
-
         armorStandSeat1.addPassenger(player);
-
-        /*Entity seat1 = tieFighter.getSeat1();
-
-        LivingEntity livingSeat1 = (Phantom) seat1;
-        livingSeat1.addPassenger(player);
-        livingSeat1.setAI(true);
-        */
 
         player.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7You mounted your &8Tie-Fighter&7!"));
     }
@@ -119,13 +90,6 @@ public class TieFighter implements Listener {
         Entity seat1 = tieFighter.getSeat1();
 
         VehicleEvents.armorStandsInShip.remove(seat1);
-        VehicleEvents.entitiesInShip.remove(seat1);
-
-        //Entity seat1 = tieFighter.getSeat1();
-        //Entity model = tieFighter.getModel();
-
-        //VehicleEvents.entitiesInShip.remove(seat1);
-        //VehicleEvents.entitiesInShip.remove(model);
 
         allTieFighters.remove(tieFighter);
 
@@ -136,9 +100,6 @@ public class TieFighter implements Listener {
         tieFighter.setModel(null);
 
         seat1.remove();
-
-        //seat1.remove();
-        //model.remove();
 
         player.getInventory().addItem(GI.tieFighter());
 
@@ -219,13 +180,13 @@ public class TieFighter implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
+    public void onPlayerInteractEntity(PlayerInteractAtEntityEvent event) {
 
         Entity entity = event.getRightClicked();
         Player player = event.getPlayer();
 
         for(Vehicle tieFighter: getAllTieFighters()){
-            if(tieFighter.getSeat1() == entity || tieFighter.getModel() == entity){
+            if(tieFighter.getSeat1() == entity){
                 openGUI(player, tieFighter);
             }
         }
@@ -238,7 +199,7 @@ public class TieFighter implements Listener {
 
         List<Vehicle> allTieFightersCpy = new ArrayList<>(getAllTieFighters());
         for(Vehicle tieFighter: allTieFightersCpy){
-            if((tieFighter.getSeat1() == entity || tieFighter.getModel() == entity) && event.getEntity() instanceof Player){
+            if(tieFighter.getSeat1() == entity && event.getEntity() instanceof Player){
                 Player player = (Player) event.getEntity();
                 removeShip(player, tieFighter);
             }

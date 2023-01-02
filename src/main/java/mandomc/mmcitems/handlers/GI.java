@@ -565,6 +565,14 @@ public class GI {
         return i;
     }
 
+    public static ItemStack kyberite() {
+        ItemStack i = new ItemStack(Material.NETHER_STAR);
+        ItemMeta iM = i.getItemMeta();
+        iM.setDisplayName(ChatColor.YELLOW + "Kyberite");
+        i.setItemMeta(iM);
+        return i;
+    }
+
     public static ItemStack redKyber() {
         ItemStack i = new ItemStack(Material.NETHER_STAR);
         ItemMeta iM = i.getItemMeta();

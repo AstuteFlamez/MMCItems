@@ -37,9 +37,6 @@ public class ShipsRunnable extends BukkitRunnable {
                         Entity seat1 = tieFighter.getSeat1();
                         seat1.setRotation(player.getLocation().getYaw(), player.getLocation().getPitch());
                         seat1.setVelocity(seat1.getLocation().getDirection().multiply(2));
-                        //Entity model = tieFighter.getModel();
-                        //model.teleport(seat1.getLocation());
-                        //model.setRotation(player.getLocation().getYaw(), player.getLocation().getPitch());
                     }
                 }
             }
@@ -49,10 +46,6 @@ public class ShipsRunnable extends BukkitRunnable {
                     if (xWing.getPilot() == player) {
                         Entity seat1 = xWing.getSeat1();
                         seat1.setRotation(player.getLocation().getYaw(), player.getLocation().getPitch());
-                        seat1.setVelocity(seat1.getLocation().getDirection().multiply(1.5));
-                        Entity model = xWing.getModel();
-                        model.teleport(seat1.getLocation());
-                        model.setRotation(player.getLocation().getYaw(), player.getLocation().getPitch());
                     }
                 }
             }

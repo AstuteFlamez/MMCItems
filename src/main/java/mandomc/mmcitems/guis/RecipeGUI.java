@@ -66,6 +66,8 @@ public class RecipeGUI implements Listener {
 
         Inventory recipes = IC.recipes(player);
 
+        Inventory vehicles = IC.vehicles(player);
+
         Inventory weapons = IC.weapons(player);
 
         Inventory lightsabers = IC.lightsabers(player);
@@ -86,8 +88,23 @@ public class RecipeGUI implements Listener {
                 case NETHERITE_SWORD:
                     player.openInventory(weapons);
                     break;
-                case WOODEN_SWORD:
-                    player.openInventory(parts);
+                case BARRIER:
+                    player.closeInventory();
+                    break;
+            }
+            if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Vehicle Recipes")){
+                player.openInventory(vehicles);
+            }
+            if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Part Recipes")){
+                player.openInventory(vehicles);
+            }
+            event.setCancelled(true);
+        }
+
+        if(event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Vehicle Recipes")){
+            switch (event.getCurrentItem().getType()) {
+                case ARROW:
+                    player.openInventory(recipes);
                     break;
                 case BARRIER:
                     player.closeInventory();
@@ -95,6 +112,7 @@ public class RecipeGUI implements Listener {
             }
             event.setCancelled(true);
         }
+
         if ((event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Weapon Recipes"))) {
             switch (event.getCurrentItem().getType()) {
                 case NETHERITE_SWORD:
@@ -131,7 +149,7 @@ public class RecipeGUI implements Listener {
             event.setCancelled(true);
         }
 
-        if ((event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Parts Recipes"))) {
+        if ((event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + " Recipes"))) {
             switch (event.getCurrentItem().getType()) {
                 case ARROW:
                     player.openInventory(recipes);
@@ -300,8 +318,8 @@ public class RecipeGUI implements Listener {
     }
 
     public void kyberAnimation(Player player){
-        ItemStack[] kybers = new ItemStack[5];
-        ItemStack[] glass = new ItemStack[5];
+        ItemStack[] kybers = new ItemStack[6];
+        ItemStack[] glass = new ItemStack[6];
 
         Inventory inv = Bukkit.createInventory(player, 54, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Kyber Crystal Recipes");
 
@@ -312,12 +330,14 @@ public class RecipeGUI implements Listener {
         glass[2] = ISC.createItem(Material.GREEN_STAINED_GLASS_PANE);
         glass[3] = ISC.createItem(Material.PURPLE_STAINED_GLASS_PANE);
         glass[4] = ISC.createItem(Material.YELLOW_STAINED_GLASS_PANE);
+        glass[5] = ISC.createItem(Material.WHITE_STAINED_GLASS_PANE);
 
         kybers[0] = GI.redKyber();
         kybers[1] = GI.blueKyber();
         kybers[2] = GI.greenKyber();
         kybers[3] = GI.purpleKyber();
         kybers[4] = GI.yellowKyber();
+        kybers[5] = GI.whiteKyber();
 
         new BukkitRunnable(){
             @Override
@@ -338,7 +358,7 @@ public class RecipeGUI implements Listener {
                 inv.setItem(29, glass[index]);
                 inv.setItem(30, glass[index]);
 
-                inv.setItem(20, ISC.createItem(Material.NETHER_STAR, ChatColor.WHITE + "White Kyber Crystal", 6));
+                inv.setItem(20, GI.kyberite());
 
                 inv.setItem(25, kybers[index]);
 
