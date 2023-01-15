@@ -10,8 +10,11 @@ import mandomc.mmcitems.listeners.VehicleEvents;
 import mandomc.mmcitems.recipes.Recipes;
 import mandomc.mmcitems.vehicles.N1Starfighter;
 import mandomc.mmcitems.vehicles.TieFighter;
+import mandomc.mmcitems.vehicles.Vehicle;
 import mandomc.mmcitems.vehicles.XWing;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
@@ -62,6 +65,31 @@ public final class MMCItems extends JavaPlugin implements Listener {
         instance = null;
 
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "[MMCItems]: Plugin is disabled!");
+
+        /*for(Vehicle tieFighter : TieFighter.getAllTieFighters()){
+            if(tieFighter.getPilot() != null){
+                getServer().getConsoleSender().sendMessage(ChatColor.RED + "[MMCItems]: Removed Tie-Fighter!");
+                Player pilot = tieFighter.getPilot();
+                TieFighter.removeShip(pilot, tieFighter);
+            }else{
+                getServer().getConsoleSender().sendMessage(ChatColor.RED + "[MMCItems]: Removed Tie-Fighter!");
+                tieFighter.getSeat1().remove();
+                tieFighter.getModel().remove();
+
+            }
+        }
+        for(Vehicle xWing : XWing.getAllXWings()){
+            if(xWing.getPilot() != null){
+                getServer().getConsoleSender().sendMessage(ChatColor.RED + "[MMCItems]: Removed X-Wing!");
+                Player pilot = xWing.getPilot();
+                XWing.removeShip(pilot, xWing);
+            }else{
+                getServer().getConsoleSender().sendMessage(ChatColor.RED + "[MMCItems]: Removed X-Wing!");
+                xWing.getSeat1().remove();
+                xWing.getModel().remove();
+
+            }
+        }*/
 
     }
 

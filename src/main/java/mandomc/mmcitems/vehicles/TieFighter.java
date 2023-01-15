@@ -1,5 +1,12 @@
 package mandomc.mmcitems.vehicles;
 
+import com.sk89q.worldedit.bukkit.BukkitAdapter;
+import com.sk89q.worldguard.LocalPlayer;
+import com.sk89q.worldguard.WorldGuard;
+import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import com.sk89q.worldguard.protection.flags.Flags;
+import com.sk89q.worldguard.protection.regions.RegionContainer;
+import com.sk89q.worldguard.protection.regions.RegionQuery;
 import mandomc.mmcitems.MMCItems;
 import mandomc.mmcitems.handlers.GI;
 import mandomc.mmcitems.handlers.ISC;
@@ -39,33 +46,42 @@ public class TieFighter implements Listener {
 
     public void createShip(Player player){
 
-        if(isMobSpawningEnabled(player.getLocation(), player) && !player.getWorld().getName().equals("BuildWorld")){
+        if(isMobSpawningEnabled(player.getLocation(), player) && !player.getWorld().getName().equals("JabbasPalace")){
 
             tieFighter = new Vehicle();
 
-            allTieFighters.add(tieFighter);
-
             Location loc = new Location(player.getWorld(), player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ());
 
-            Entity seat1 = player.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
+            Entity seat1 = player.getWorld().spawnEntity(loc, EntityType.PHANTOM);
+            Entity model = player.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
 
             int slot = player.getInventory().getHeldItemSlot();
             player.getInventory().setItem(slot, new ItemStack(Material.AIR));
 
-            ArmorStand armorStandSeat1 = (ArmorStand) seat1;
+            LivingEntity seat1Living = (Phantom) seat1;
+            ArmorStand armorStandModel = (ArmorStand) model;
 
-            armorStandSeat1.setInvulnerable(true);
-            armorStandSeat1.setGravity(true);
-            armorStandSeat1.setInvisible(true);
-            armorStandSeat1.setCollidable(true);
-            armorStandSeat1.setRotation(player.getLocation().getYaw(), 0);
-            armorStandSeat1.setHelmet(GI.tieFighter());
+            seat1Living.setAI(false);
+            seat1Living.setSilent(true);
+            seat1Living.setInvisible(true);
+            seat1Living.setCollidable(true);
+            seat1Living.setRotation(player.getLocation().getYaw(), 0);
 
+            armorStandModel.setInvulnerable(true);
+            armorStandModel.setGravity(true);
+            armorStandModel.setInvisible(true);
+            armorStandModel.setCollidable(true);
+            armorStandModel.setRotation(player.getLocation().getYaw(), 0);
+            armorStandModel.setHelmet(GI.tieFighter());
             player.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7You spawned in your &8Tie-Fighter&7!"));
 
             tieFighter.setSeat1(seat1);
+            tieFighter.setModel(model);
 
-            VehicleEvents.armorStandsInShip.add(tieFighter.getSeat1());
+            allTieFighters.add(tieFighter);
+
+            VehicleEvents.entitiesInShip.add(tieFighter.getSeat1());
+            VehicleEvents.armorStandsInShip.add(tieFighter.getModel());
 
         }else{
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou cannot spawn in your &8Tie-Fighter &chere!"));
@@ -79,19 +95,19 @@ public class TieFighter implements Listener {
         VehicleEvents.playersInShip.add(tieFighter.getPilot());
 
         Entity seat1 = tieFighter.getSeat1();
-        ArmorStand armorStandSeat1 = (ArmorStand) seat1;
-        armorStandSeat1.addPassenger(player);
+        LivingEntity seat1Living = (Phantom) seat1;
+        seat1Living.addPassenger(player);
 
         player.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7You mounted your &8Tie-Fighter&7!"));
     }
 
-    public void removeShip(Player player, Vehicle tieFighter){
+    public static void removeShip(Player player, Vehicle tieFighter){
 
         Entity seat1 = tieFighter.getSeat1();
+        Entity model = tieFighter.getModel();
 
-        VehicleEvents.armorStandsInShip.remove(seat1);
-
-        allTieFighters.remove(tieFighter);
+        VehicleEvents.entitiesInShip.remove(seat1);
+        VehicleEvents.armorStandsInShip.remove(model);
 
         tieFighter.setPilot(null);
         tieFighter.setGunner(null);
@@ -100,6 +116,9 @@ public class TieFighter implements Listener {
         tieFighter.setModel(null);
 
         seat1.remove();
+        model.remove();
+
+        allTieFighters.remove(tieFighter);
 
         player.getInventory().addItem(GI.tieFighter());
 
@@ -186,7 +205,7 @@ public class TieFighter implements Listener {
         Player player = event.getPlayer();
 
         for(Vehicle tieFighter: getAllTieFighters()){
-            if(tieFighter.getSeat1() == entity){
+            if(tieFighter.getModel() == entity){
                 openGUI(player, tieFighter);
             }
         }
@@ -211,19 +230,32 @@ public class TieFighter implements Listener {
 
         Player player = (Player) event.getWhoClicked();
 
-        if (event.getView().getTitle().equalsIgnoreCase(ChatColor.BLACK + "Tie-Fighter") && event.getCurrentItem() != null) {
-            for(Vehicle tieFighter : getAllTieFighters()) {
-                if(event.getCurrentItem().getItemMeta().getCustomModelData() == tieFighter.getSeat1Item()){
-                    switch (event.getCurrentItem().getItemMeta().getCustomModelData()){
-                        case 4:
-                            player.closeInventory();
-                            if(tieFighter.getSeat1().getPassengers().isEmpty()){
-                                rideShip(player, tieFighter);
-                            }
+        if (event.getView().getTitle().equalsIgnoreCase(ChatColor.BLACK + "Tie-Fighter")){
+            event.setCancelled(true);
+            if (event.getCurrentItem() != null) {
+                for (Vehicle tieFighter : getAllTieFighters()) {
+                    if (event.getCurrentItem().getItemMeta().getCustomModelData() == tieFighter.getSeat1Item()) {
+                        switch (event.getCurrentItem().getItemMeta().getCustomModelData()) {
+                            case 4:
+                                event.setCancelled(true);
+                                player.closeInventory();
+                                if (tieFighter.getSeat1().getPassengers().isEmpty()) {
+                                    rideShip(player, tieFighter);
+                                }
+                        }
                     }
                 }
             }
-            event.setCancelled(true);
         }
+    }
+
+    public static boolean isMobSpawningEnabled(Location location, Player player){
+        LocalPlayer localPlayer = WorldGuardPlugin.inst().wrapPlayer(player);
+        RegionContainer regionContainer = WorldGuard.getInstance().getPlatform().getRegionContainer();
+        RegionQuery query = regionContainer.createQuery();
+
+        com.sk89q.worldedit.util.Location loc = BukkitAdapter.adapt(location);
+
+        return query.testState(loc, localPlayer, Flags.MOB_SPAWNING);
     }
 }

@@ -30,6 +30,22 @@ public class GI {
         return item;
     }
 
+    public static ItemStack xWingColored(int customModelData, ChatColor color){
+        ItemStack item = new ItemStack(Material.WOODEN_SWORD);
+        ItemMeta itemMeta = item.getItemMeta();
+        itemMeta.setDisplayName(color + "X-Wing Starfighter");
+        ArrayList<String> itemLore = new ArrayList<String>();
+        itemLore.add(ChatColor.GRAY + "Right click to spawn!");
+        itemLore.add(ChatColor.GRAY + "Right click the cockpit to enter!");
+        itemLore.add("");
+        itemLore.add(ChatColor.GOLD + "Ability: Proton Torpedos ->" + ChatColor.YELLOW + "" + ChatColor.BOLD + " LEFT CLICK");
+        itemLore.add(ChatColor.GRAY + "Proton Torpedos Cooldown:" + ChatColor.RED + " 60 seconds");
+        itemMeta.setLore(itemLore);
+        itemMeta.setCustomModelData(customModelData);
+        item.setItemMeta(itemMeta);
+        return item;
+    }
+
     public static ItemStack n1(){
         ItemStack item = new ItemStack(Material.WOODEN_SWORD);
         ItemMeta itemMeta = item.getItemMeta();

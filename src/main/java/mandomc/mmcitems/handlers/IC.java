@@ -12,20 +12,9 @@ public class IC {
         Inventory recipes = Bukkit.createInventory(player, 9, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "MandoMC Recipes");
 
         recipes.setItem(0, ISC.createItem(Material.NETHERITE_SWORD, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Weapon Recipes", 1, ChatColor.GRAY + "Inside you will find weapons from a more civilized age!"));
-        recipes.setItem(1, ISC.createItem(Material.WOODEN_SWORD, ChatColor.DARK_GRAY + "" + ChatColor.BOLD + "Vehicle Recipes", 1, ChatColor.GRAY + "Fly away!"));
-        recipes.setItem(2, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&2&lPart Recipes"),2,ChatColor.GRAY + "Use these recipes to create larger items!"));
+        recipes.setItem(1, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&2&lPart Recipes"),2,ChatColor.GRAY + "Use these recipes to create larger items!"));
         recipes.setItem(8, ISC.createItem(Material.BARRIER, ChatColor.translateAlternateColorCodes('&', "&c&lCLOSE")));
         return recipes;
-    }
-
-    public static Inventory vehicles(Player player){
-        Inventory vehicles = Bukkit.createInventory(player, 9, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Vehicle Recipes");
-
-        vehicles.setItem(0, ISC.createItem(Material.WOODEN_SWORD, ChatColor.RED + "X-Wing Starfighter", 6, ChatColor.GRAY + "Coming January 23rd!"));
-        vehicles.setItem(1, ISC.createItem(Material.WOODEN_HOE, ChatColor.BLACK + "Tie-Fighter", 4, ChatColor.GRAY + "Coming soon..."));
-        vehicles.setItem(7, ISC.createItem(Material.ARROW, ChatColor.RED + "" + ChatColor.BOLD + "Back", ChatColor.GRAY + "Click to go back!"));
-        vehicles.setItem(8, ISC.createItem(Material.BARRIER, ChatColor.translateAlternateColorCodes('&', "&c&lCLOSE")));
-        return vehicles;
     }
 
     public static Inventory weapons(Player player){
@@ -44,7 +33,7 @@ public class IC {
         parts.setItem(1, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&7Double-Bladed Hilt"), 4));
         parts.setItem(2, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&7Single-Bladed Hilt"), 5));
         parts.setItem(3, ISC.createItem(Material.BEACON, ChatColor.translateAlternateColorCodes('&', "&b&lLightsaber Core")));
-        parts.setItem(4, ISC.createItem(Material.NETHER_STAR, ChatColor.WHITE + "Kyber Crystal"));
+        parts.setItem(4, ISC.createItem(Material.NETHER_STAR, ChatColor.WHITE + "Kyber Crystals"));
         parts.setItem(7, ISC.createItem(Material.ARROW, ChatColor.translateAlternateColorCodes('&', "&c&lBack"), ChatColor.translateAlternateColorCodes('&', "&7Click to go back!")));
         parts.setItem(8, ISC.createItem(Material.BARRIER, ChatColor.translateAlternateColorCodes('&', "&c&lCLOSE")));
         return parts;
@@ -119,7 +108,7 @@ public class IC {
         core.setItem(11, ISC.createItem(Material.NETHERITE_INGOT));
         core.setItem(12, ISC.createItem(Material.IRON_INGOT));
         core.setItem(19, ISC.createItem(Material.NETHERITE_BLOCK));
-        core.setItem(20, ISC.createItem(Material.NETHER_STAR));
+        core.setItem(20, ISC.createItem(Material.IRON_BLOCK));
         core.setItem(21, ISC.createItem(Material.NETHERITE_BLOCK));
         core.setItem(25, ISC.createItem(Material.BEACON, ChatColor.translateAlternateColorCodes('&', "&b&lLightsaber Core")));
         core.setItem(28, ISC.createItem(Material.IRON_INGOT));

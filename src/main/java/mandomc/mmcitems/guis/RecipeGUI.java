@@ -23,31 +23,10 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RecipeGUI implements Listener {
 
-    List<Inventory> crossGuardInvs = new ArrayList<>();
-    public static ItemStack[] crossGuardContents;
-    public static ItemStack[] crossGuardContents2;
-    private int crossGuardItemIndex = 0;
-    private int crossGuardItemIndex2 = 0;
-
-    List<Inventory> dBInvs = new ArrayList<>();
-    public static ItemStack[] dBContents;
-    public static ItemStack[] dBContents2;
-    private int dBItemIndex = 0;
-    private int dBItemIndex2 = 0;
-
-    List<Inventory> sInvs = new ArrayList<>();
-    public static ItemStack[] sContents;
-    public static ItemStack[] sContents2;
-    private int sItemIndex = 0;
-    private int sItemIndex2 = 0;
-
-    List<Inventory> kyberInvs = new ArrayList<>();
-    public static ItemStack[] kyberContents;
-    public static ItemStack[] kyberContents2;
-    private int kyberItemIndex = 0;
-    private int kyberItemIndex2 = 0;
-
-    private int index = 0;
+    private int kyberIndex = 0;
+    private int crossguardIndex = 0;
+    private int doublebladedIndex = 0;
+    private int singlebladedIndex = 0;
 
     private final JavaPlugin plugin;
 
@@ -65,8 +44,6 @@ public class RecipeGUI implements Listener {
         }
 
         Inventory recipes = IC.recipes(player);
-
-        Inventory vehicles = IC.vehicles(player);
 
         Inventory weapons = IC.weapons(player);
 
@@ -92,23 +69,8 @@ public class RecipeGUI implements Listener {
                     player.closeInventory();
                     break;
             }
-            if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Vehicle Recipes")){
-                player.openInventory(vehicles);
-            }
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Part Recipes")){
-                player.openInventory(vehicles);
-            }
-            event.setCancelled(true);
-        }
-
-        if(event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Vehicle Recipes")){
-            switch (event.getCurrentItem().getType()) {
-                case ARROW:
-                    player.openInventory(recipes);
-                    break;
-                case BARRIER:
-                    player.closeInventory();
-                    break;
+                player.openInventory(parts);
             }
             event.setCancelled(true);
         }
@@ -149,7 +111,7 @@ public class RecipeGUI implements Listener {
             event.setCancelled(true);
         }
 
-        if ((event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + " Recipes"))) {
+        if ((event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Part Recipes"))) {
             switch (event.getCurrentItem().getType()) {
                 case ARROW:
                     player.openInventory(recipes);
@@ -343,24 +305,24 @@ public class RecipeGUI implements Listener {
             @Override
             public void run(){
 
-                if(index < 4){
-                    index++;
+                if(kyberIndex < 5){
+                    kyberIndex++;
                 }else{
-                    index = 0;
+                    kyberIndex = 0;
                 }
 
-                inv.setItem(10, glass[index]);
-                inv.setItem(11, glass[index]);
-                inv.setItem(12, glass[index]);
-                inv.setItem(19, glass[index]);
-                inv.setItem(21, glass[index]);
-                inv.setItem(28, glass[index]);
-                inv.setItem(29, glass[index]);
-                inv.setItem(30, glass[index]);
+                inv.setItem(10, glass[kyberIndex]);
+                inv.setItem(11, glass[kyberIndex]);
+                inv.setItem(12, glass[kyberIndex]);
+                inv.setItem(19, glass[kyberIndex]);
+                inv.setItem(21, glass[kyberIndex]);
+                inv.setItem(28, glass[kyberIndex]);
+                inv.setItem(29, glass[kyberIndex]);
+                inv.setItem(30, glass[kyberIndex]);
 
                 inv.setItem(20, GI.kyberite());
 
-                inv.setItem(25, kybers[index]);
+                inv.setItem(25, kybers[kyberIndex]);
 
                 inv.setItem(23, ISC.createItem(Material.CRAFTING_TABLE, ChatColor.DARK_GRAY + "Crafting Table", ChatColor.GRAY + "Craft this recipe using a work bench!"));
                 inv.setItem(48, ISC.createItem(Material.ARROW, ChatColor.RED + "" + ChatColor.BOLD + "Back", ChatColor.GRAY + "Click to go back to Weapon Recipes!"));
@@ -398,17 +360,17 @@ public class RecipeGUI implements Listener {
             @Override
             public void run(){
 
-                if(index < 5){
-                    index++;
+                if(crossguardIndex < 5){
+                    crossguardIndex++;
                 }else{
-                    index = 0;
+                    crossguardIndex = 0;
                 }
 
-                inv.setItem(11, kybers[index]);
+                inv.setItem(11, kybers[crossguardIndex]);
                 inv.setItem(20, GI.lightsaberCore());
                 inv.setItem(29, GI.crossGuardHilt());
 
-                inv.setItem(25, sabers[index]);
+                inv.setItem(25, sabers[crossguardIndex]);
 
                 inv.setItem(23, ISC.createItem(Material.CRAFTING_TABLE, ChatColor.DARK_GRAY + "Crafting Table", ChatColor.GRAY + "Craft this recipe using a work bench!"));
                 inv.setItem(48, ISC.createItem(Material.ARROW, ChatColor.RED + "" + ChatColor.BOLD + "Back", ChatColor.GRAY + "Click to go back to Weapon Recipes!"));
@@ -445,17 +407,17 @@ public class RecipeGUI implements Listener {
             @Override
             public void run(){
 
-                if(index < 5){
-                    index++;
+                if(singlebladedIndex < 5){
+                    singlebladedIndex++;
                 }else{
-                    index = 0;
+                    singlebladedIndex = 0;
                 }
 
-                inv.setItem(11, kybers[index]);
+                inv.setItem(11, kybers[singlebladedIndex]);
                 inv.setItem(20, GI.lightsaberCore());
                 inv.setItem(29, GI.singleBladedHilt());
 
-                inv.setItem(25, sabers[index]);
+                inv.setItem(25, sabers[singlebladedIndex]);
 
                 inv.setItem(23, ISC.createItem(Material.CRAFTING_TABLE, ChatColor.DARK_GRAY + "Crafting Table", ChatColor.GRAY + "Craft this recipe using a work bench!"));
                 inv.setItem(48, ISC.createItem(Material.ARROW, ChatColor.RED + "" + ChatColor.BOLD + "Back", ChatColor.GRAY + "Click to go back to Weapon Recipes!"));
@@ -492,17 +454,17 @@ public class RecipeGUI implements Listener {
             @Override
             public void run(){
 
-                if(index < 5){
-                    index++;
+                if(doublebladedIndex < 5){
+                    doublebladedIndex++;
                 }else{
-                    index = 0;
+                    doublebladedIndex = 0;
                 }
 
-                inv.setItem(11, kybers[index]);
+                inv.setItem(11, kybers[doublebladedIndex]);
                 inv.setItem(20, GI.lightsaberCore());
                 inv.setItem(29, GI.doubleBladedHilt());
 
-                inv.setItem(25, sabers[index]);
+                inv.setItem(25, sabers[doublebladedIndex]);
 
                 inv.setItem(23, ISC.createItem(Material.CRAFTING_TABLE, ChatColor.DARK_GRAY + "Crafting Table", ChatColor.GRAY + "Craft this recipe using a work bench!"));
                 inv.setItem(48, ISC.createItem(Material.ARROW, ChatColor.RED + "" + ChatColor.BOLD + "Back", ChatColor.GRAY + "Click to go back to Weapon Recipes!"));

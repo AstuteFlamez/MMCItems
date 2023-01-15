@@ -26,7 +26,7 @@ public class MMCGive implements CommandExecutor {
                             player.sendMessage(ChatColor.RED + "You did not provide an online player!");
                         }else{
                             target.getInventory().addItem(GI.kyberite());
-                            target.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7Congras you defeats the &6Rancor Boss &7and it gave you a white kyber crystal from it's belly!"));
+                            target.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7Congrats, you defeats the &6Rancor Boss &7and it gave you a kyberite from it's belly!"));
                         }
                     }else{
                         player.sendMessage("Incorrect Syntax! /mmcgive <onlinePlayer> <item>");
@@ -47,7 +47,7 @@ public class MMCGive implements CommandExecutor {
                         Bukkit.getServer().getConsoleSender().sendMessage("You did not provide an online player");
                     }else{
                         target.getInventory().addItem(GI.kyberite());
-                        target.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7Congras you defeats the &6Rancor Boss &7and it gave you a white kyber crystal from it's belly!"));
+                        target.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7Congrats, you defeats the &6Rancor Boss &7and it gave you a kyberite from it's belly!"));
                     }
                 }else{
                     Bukkit.getServer().getConsoleSender().sendMessage("Incorrect Syntax! /mmcgive <onlinePlayer> <item>");

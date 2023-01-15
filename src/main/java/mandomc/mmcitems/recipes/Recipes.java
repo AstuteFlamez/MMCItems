@@ -24,31 +24,43 @@ public class Recipes {
         ShapedRecipe redKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("redkyber"), redKyber);
         redKyberRecipe.shape("PPP", "PKP", "PPP");
         redKyberRecipe.setIngredient('P', Material.RED_STAINED_GLASS_PANE);
-        redKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.whiteKyber()));
+        redKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.kyberite()));
+        Bukkit.getServer().addRecipe(redKyberRecipe);
 
-        ItemStack blueKyber = GI.redKyber();
+        ItemStack blueKyber = GI.blueKyber();
         ShapedRecipe blueKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("bluekyber"), blueKyber);
         blueKyberRecipe.shape("PPP", "PKP", "PPP");
-        blueKyberRecipe.setIngredient('P', Material.BLUE_BANNER);
-        blueKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.whiteKyber()));
+        blueKyberRecipe.setIngredient('P', Material.BLUE_STAINED_GLASS_PANE);
+        blueKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.kyberite()));
+        Bukkit.getServer().addRecipe(blueKyberRecipe);
 
-        ItemStack greenKyber = GI.redKyber();
+        ItemStack greenKyber = GI.greenKyber();
         ShapedRecipe greenKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("greenkyber"), greenKyber);
         greenKyberRecipe.shape("PPP", "PKP", "PPP");
-        greenKyberRecipe.setIngredient('P', Material.RED_STAINED_GLASS_PANE);
-        greenKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.whiteKyber()));
+        greenKyberRecipe.setIngredient('P', Material.GREEN_STAINED_GLASS);
+        greenKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.kyberite()));
+        Bukkit.getServer().addRecipe(greenKyberRecipe);
 
-        ItemStack purpleKyber = GI.redKyber();
+        ItemStack purpleKyber = GI.purpleKyber();
         ShapedRecipe purpleKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("purplekyber"), purpleKyber);
         purpleKyberRecipe.shape("PPP", "PKP", "PPP");
         purpleKyberRecipe.setIngredient('P', Material.PURPLE_STAINED_GLASS_PANE);
-        purpleKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.whiteKyber()));
+        purpleKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.kyberite()));
+        Bukkit.getServer().addRecipe(purpleKyberRecipe);
 
-        ItemStack yellowKyber = GI.redKyber();
+        ItemStack yellowKyber = GI.yellowKyber();
         ShapedRecipe yellowKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("yellowkyber"), yellowKyber);
         yellowKyberRecipe.shape("PPP", "PKP", "PPP");
         yellowKyberRecipe.setIngredient('P', Material.YELLOW_STAINED_GLASS_PANE);
-        yellowKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.whiteKyber()));
+        yellowKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.kyberite()));
+        Bukkit.getServer().addRecipe(yellowKyberRecipe);
+
+        ItemStack whiteKyber = GI.whiteKyber();
+        ShapedRecipe whiteKyberRecipe = new ShapedRecipe(NamespacedKey.minecraft("whitekyber"), whiteKyber);
+        whiteKyberRecipe.shape("PPP", "PKP", "PPP");
+        whiteKyberRecipe.setIngredient('P', Material.WHITE_STAINED_GLASS_PANE);
+        whiteKyberRecipe.setIngredient('K', new RecipeChoice.ExactChoice(GI.kyberite()));
+        Bukkit.getServer().addRecipe(whiteKyberRecipe);
 
         ItemStack crossGuardHilt = GI.crossGuardHilt();
         ShapedRecipe crossGuardHiltRecipe = new ShapedRecipe(NamespacedKey.minecraft("crossguardhilt"), crossGuardHilt);
@@ -87,7 +99,7 @@ public class Recipes {
         coreRecipe.shape("INI", "BSB", "INI");
         coreRecipe.setIngredient('S', Material.NETHER_STAR);
         coreRecipe.setIngredient('B', Material.NETHERITE_BLOCK);
-        coreRecipe.setIngredient('N', Material.NETHERITE_INGOT);
+        coreRecipe.setIngredient('N', Material.IRON_BLOCK);
         coreRecipe.setIngredient('I', Material.IRON_INGOT);
         Bukkit.getServer().addRecipe(coreRecipe);
 

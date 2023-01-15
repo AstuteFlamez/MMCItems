@@ -40,7 +40,7 @@ public class N1Starfighter implements Listener {
 
         if (isMobSpawningEnabled(player.getLocation(), player) && !player.getWorld().getName().equals("BuildWorld")) {
 
-            n1starfighter = new Vehicle();
+            //n1starfighter = new Vehicle();
 
             getAllN1Starfighters().add(n1starfighter);
 

@@ -1,5 +1,8 @@
 package mandomc.mmcitems.listeners;
 
+import mandomc.mmcitems.vehicles.TieFighter;
+import mandomc.mmcitems.vehicles.Vehicle;
+import mandomc.mmcitems.vehicles.XWing;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -49,9 +52,26 @@ public class VehicleEvents implements Listener {
 
     @EventHandler
     public void onDeath(EntityDeathEvent event){
+        Entity entity = event.getEntity();
         if(entitiesInShip.contains(event.getEntity())){
             event.getDrops().clear();
             entitiesInShip.remove(event.getEntity());
+        }
+        for(Vehicle xWing : XWing.getAllXWings()){
+            if(xWing.getSeat1() == entity){
+                xWing.getModel().remove();
+            }
+            if(xWing.getModel() == entity){
+                xWing.getSeat1().remove();
+            }
+        }
+        for(Vehicle tieFighter : TieFighter.getAllTieFighters()){
+            if(tieFighter.getSeat1() == entity){
+                tieFighter.getModel().remove();
+            }
+            if(tieFighter.getModel() == entity){
+                tieFighter.getSeat1().remove();
+            }
         }
     }
 
@@ -59,6 +79,29 @@ public class VehicleEvents implements Listener {
     public void onInteraction(PlayerInteractAtEntityEvent event){
         if(armorStandsInShip.contains(event.getRightClicked())){
             event.setCancelled(true);
+        }
+    }
+
+    @EventHandler
+    public void onFallDamage(EntityDamageEvent event){
+
+        if(event.getEntity() instanceof Player){
+            Player player = (Player) event.getEntity();
+
+            for(Vehicle xWing : XWing.getAllXWings()){
+                if(xWing.getPilot() == player){
+                    if(event.getCause() == EntityDamageEvent.DamageCause.FALL){
+                        event.setCancelled(true);
+                    }
+                }
+            }
+            for(Vehicle tieFighter : TieFighter.getAllTieFighters()){
+                if(tieFighter.getPilot() == player){
+                    if(event.getCause() == EntityDamageEvent.DamageCause.FALL){
+                        event.setCancelled(true);
+                    }
+                }
+            }
         }
     }
 
