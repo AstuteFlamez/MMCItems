@@ -9,8 +9,7 @@ import com.sk89q.worldguard.protection.regions.RegionContainer;
 import com.sk89q.worldguard.protection.regions.RegionQuery;
 import mandomc.mmcitems.MMCItems;
 import mandomc.mmcitems.handlers.GI;
-import mandomc.mmcitems.handlers.ISC;
-import mandomc.mmcitems.handlers.RandomMethods;
+import mandomc.mmcitems.handlers.IC;
 import mandomc.mmcitems.listeners.VehicleEvents;
 import org.bukkit.*;
 import org.bukkit.entity.*;
@@ -18,10 +17,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerInteractAtEntityEvent;
-import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 import org.spigotmc.event.entity.EntityDismountEvent;
@@ -30,8 +26,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
-
-import static mandomc.mmcitems.handlers.RandomMethods.isMobSpawningEnabled;
 
 public class XWing implements Listener {
 
@@ -42,6 +36,74 @@ public class XWing implements Listener {
 
     public static List<Vehicle> getAllXWings(){
         return allXWings;
+    }
+
+    @EventHandler
+    public void onPlayerInteractXWing(PlayerInteractEvent event){
+
+        Player player = event.getPlayer();
+
+        if ((event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) && player.getItemInHand().getType() == Material.WOODEN_SWORD && player.getItemInHand().getItemMeta().hasCustomModelData() && player.getItemInHand().getItemMeta() != null) {
+            //checks if player spawns in a ship
+            if (player.getItemInHand().getItemMeta() != null && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.RED + "X-Wing Starfighter")) {
+                createShip(player, 6, ChatColor.RED);
+            }
+            if (player.getItemInHand().getItemMeta() != null && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_GREEN + "X-Wing Starfighter")) {
+                if(player.hasPermission("mmc.greenxwing")){
+                    createShip(player, 7, ChatColor.DARK_GREEN);
+                }else{
+                    player.sendMessage(ChatColor.RED + "The force is not with you...");
+                }
+            }
+            if (player.getItemInHand().getItemMeta() != null && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_AQUA + "X-Wing Starfighter")) {
+                if(player.hasPermission("mmc.bluexwing")){
+                    createShip(player, 9, ChatColor.DARK_AQUA);
+                }else{
+                    player.sendMessage(ChatColor.RED + "The force is not with you...");
+                }
+            }
+        }
+
+        if ((event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) && player.getItemInHand().getType() == Material.WOODEN_SWORD && player.getItemInHand().getItemMeta().hasCustomModelData() && player.getItemInHand().getItemMeta() != null) {
+            player.openInventory(IC.xWings(player));
+        }
+
+        if (event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+            for (Vehicle xWing : getAllXWings()){
+                if(xWing.getPilot() == player){
+                    shootTorpedos(player);
+                }
+            }
+        }
+    }
+
+    @EventHandler
+    public void inventoryClick(InventoryClickEvent event){
+
+        Player player = (Player) event.getWhoClicked();
+
+        if ((event.getView().getTitle().equalsIgnoreCase(ChatColor.RED + "" + ChatColor.BOLD + "X-Wing Starfighter Customization"))) {
+            event.setCancelled(true);
+            switch (event.getSlot()) {
+                case 3:
+                    player.getInventory().setItem(player.getInventory().getHeldItemSlot(), GI.xWingColored(6, ChatColor.RED));
+                    player.closeInventory();
+                    break;
+                case 4:
+                    if(player.hasPermission("mmc.greenxwing")){
+                        player.getInventory().setItem(player.getInventory().getHeldItemSlot(), GI.xWingColored(7, ChatColor.DARK_GREEN));
+                    }
+                    player.closeInventory();
+                    break;
+                case 5:
+                    if(player.hasPermission("mmc.bluexwing")){
+                        player.getInventory().setItem(player.getInventory().getHeldItemSlot(), GI.xWingColored(9, ChatColor.DARK_AQUA));
+                    }
+                    player.closeInventory();
+                    break;
+            }
+        }
+
     }
 
     public void createShip(Player player, int customModelData, ChatColor color){
@@ -74,8 +136,6 @@ public class XWing implements Listener {
             modelLiving.setRotation(player.getLocation().getYaw(), 0);
             modelLiving.getEquipment().setHelmet(GI.xWingColored(customModelData, color));
 
-            player.sendMessage(MMCItems.prefix + ChatColor.GRAY + "You spawned in your " + color + "X-Wing Starfighter" + ChatColor.GRAY + "!");
-
             xWing.setSeat1(seat1);
             xWing.setModel(model);
 
@@ -83,6 +143,8 @@ public class XWing implements Listener {
 
             VehicleEvents.entitiesInShip.add(xWing.getSeat1());
             VehicleEvents.entitiesInShip.add(xWing.getModel());
+
+            rideShip(player, xWing);
         }else{
             player.sendMessage(MMCItems.prefix + ChatColor.GRAY + "You cannot spawn in your " + color + "X-Wing Starfighter" + ChatColor.GRAY + " here!");
         }
@@ -103,9 +165,11 @@ public class XWing implements Listener {
         VehicleEvents.playersInShip.add(xWing.getPilot());
 
         if(customModelData == 6){
-            player.sendMessage(MMCItems.prefix + ChatColor.RED + "You mounted your X-Wing Starfighter!");
+            player.sendMessage(MMCItems.prefix + ChatColor.GRAY + "You mounted your " + ChatColor.RED + "X-Wing Starfighter!");
         }else if(customModelData == 7){
-            player.sendMessage(MMCItems.prefix + ChatColor.DARK_GREEN + "You mounted your X-Wing Starfighter!");
+            player.sendMessage(MMCItems.prefix + ChatColor.GRAY + "You mounted your " + ChatColor.DARK_GREEN + "X-Wing Starfighter!");
+        }else if(customModelData == 9){
+            player.sendMessage(MMCItems.prefix + ChatColor.GRAY + "You mounted your " + ChatColor.DARK_AQUA + "X-Wing Starfighter!");
         }
     }
 
@@ -137,27 +201,10 @@ public class XWing implements Listener {
         }else if(customModelData == 7){
             player.getInventory().addItem(GI.xWingColored(customModelData, ChatColor.DARK_GREEN));
             player.sendMessage(MMCItems.prefix + ChatColor.GRAY + "You dismounted your " + ChatColor.DARK_GREEN + "X-Wing Starfighter" + ChatColor.GRAY + "!");
+        }else if(customModelData == 8){
+            player.getInventory().addItem(GI.xWingColored(customModelData, ChatColor.DARK_AQUA));
+            player.sendMessage(MMCItems.prefix + ChatColor.GRAY + "You dismounted your " + ChatColor.DARK_AQUA + "X-Wing Starfighter" + ChatColor.GRAY + "!");
         }
-    }
-
-    public void openGUI(Player player, Vehicle xWing, ChatColor color){
-
-        String seat1;
-
-        if(xWing.getSeat1().getPassengers().isEmpty()){
-            seat1 = ChatColor.translateAlternateColorCodes('&', "&a&lUNOCCUPIED");
-        }else{
-            seat1 = ChatColor.translateAlternateColorCodes('&', "&c&lOCCUPIED");
-        }
-
-        xWing.setSeat1Item(1);
-
-        Inventory xWingGUI = Bukkit.createInventory(player, 54, color + "X-Wing Starfighter");
-        xWingGUI.setItem(12, GI.xWingColored(7, ChatColor.DARK_GREEN));
-        xWingGUI.setItem(14, GI.xWing());
-        xWingGUI.setItem(22, ISC.createItem(Material.WOODEN_HOE, ChatColor.translateAlternateColorCodes('&', "&e&lPilot Seat"), 1, ChatColor.GRAY + "Click to enter the pilot's seat!", "", seat1));
-
-        player.openInventory(xWingGUI);
     }
 
     public void shootTorpedos(Player player) {
@@ -193,132 +240,16 @@ public class XWing implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteractXWing(PlayerInteractEvent event){
-
-        Player player = event.getPlayer();
-
-        if ((event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) && player.getItemInHand().getType() == Material.WOODEN_SWORD && player.getItemInHand().getItemMeta().hasCustomModelData() && player.getItemInHand().getItemMeta() != null) {
-            //checks if player spawns in a ship
-            if (player.getItemInHand().getItemMeta() != null && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.RED + "X-Wing Starfighter")) {
-                createShip(player, 6, ChatColor.RED);
-            }
-            if (player.getItemInHand().getItemMeta() != null && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_GREEN + "X-Wing Starfighter")) {
-                if(player.hasPermission("mmc.greenxwing")){
-                    createShip(player, 7, ChatColor.DARK_GREEN);
-                }else{
-                    player.sendMessage(ChatColor.RED + "The force is not with you...");
-                }
-            }
-        }
-        if (event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
-            for (Vehicle xWing : getAllXWings()){
-                if(xWing.getPilot() == player){
-                    shootTorpedos(player);
-                }
-            }
-        }
-    }
-
-    @EventHandler
-    public void onPlayerInteractEntityXWing(PlayerInteractEntityEvent event) {
-
-        Entity entity = event.getRightClicked();
-        Player player = event.getPlayer();
-
-        for(Vehicle xWing: getAllXWings()){
-            if(xWing.getModel() == entity){
-
-                LivingEntity modelLiving = (Zombie) entity;
-
-                int customModelData = modelLiving.getEquipment().getHelmet().getItemMeta().getCustomModelData();
-
-                if(customModelData == 6){
-                    openGUI(player, xWing, ChatColor.RED);
-                }else if(customModelData == 7){
-                    openGUI(player, xWing, ChatColor.DARK_GREEN);
-                }
-            }
-        }
-    }
-
-    @EventHandler
     public void dismountXWing(EntityDismountEvent event){
 
         Entity entity = event.getDismounted();
 
-        List<Vehicle> allXWindsCopy = new ArrayList<>(getAllXWings());
-        for(Vehicle xWing: allXWindsCopy){
+        List<Vehicle> allXWingsCopy = new ArrayList<>(getAllXWings());
+        for(Vehicle xWing: allXWingsCopy){
             if(xWing.getSeat1() == entity && event.getEntity() instanceof Player){
                 Player player = (Player) event.getEntity();
 
-                LivingEntity modelLiving = (Zombie) xWing.getModel();
-
-                int customModelData = modelLiving.getEquipment().getHelmet().getItemMeta().getCustomModelData();
-
-                if(customModelData == 6){
-                    removeShip(player, xWing);
-                }else if(customModelData == 7){
-                    removeShip(player, xWing);
-                }
-            }
-        }
-    }
-
-    @EventHandler
-    public void inventoryClickXWing(InventoryClickEvent event){
-
-        Player player = (Player) event.getWhoClicked();
-
-        if ((event.getView().getTitle().equalsIgnoreCase(ChatColor.RED + "X-Wing Starfighter"))
-                || (event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_GREEN + "X-Wing Starfighter"))){
-            event.setCancelled(true);
-            if(event.getCurrentItem() != null){
-                for(Vehicle xWing : getAllXWings()) {
-                    for(Entity entity : player.getNearbyEntities(3, 3, 3)){
-
-                        LivingEntity modelLiving = (Zombie) xWing.getModel();
-
-                        int customModelData = modelLiving.getEquipment().getHelmet().getItemMeta().getCustomModelData();
-
-                        if(xWing.getSeat1() == entity){
-                            switch (event.getSlot()){
-                                case 12:
-                                    event.setCancelled(true);
-                                    if(player.hasPermission("mmc.greenxwing")){
-                                        player.closeInventory();
-                                        modelLiving.getEquipment().setHelmet(GI.xWingColored(7, ChatColor.DARK_GREEN));
-                                        removeShip(player, xWing);
-                                    }
-                                    player.updateInventory();
-                                    break;
-                                case 14:
-                                    event.setCancelled(true);
-                                    player.closeInventory();
-                                    modelLiving.getEquipment().setHelmet(GI.xWing());
-                                    removeShip(player, xWing);
-                                    player.updateInventory();
-                                    break;
-                                case 22:
-                                    event.setCancelled(true);
-                                    player.closeInventory();
-                                    if(xWing.getSeat1().getPassengers().isEmpty()){
-
-                                        if(customModelData == 6){
-                                            rideShip(player, xWing);
-                                        }else if(customModelData == 7){
-                                            if(player.hasPermission("mmc.greenxwing")){
-                                                rideShip(player, xWing);
-                                            }else{
-                                                player.sendMessage(ChatColor.RED + "The force is not with you...");
-                                            }
-                                        }
-                                    }
-                                    player.updateInventory();
-                                    break;
-                            }
-                        }
-                    }
-                }
+                removeShip(player, xWing);
             }
         }
     }

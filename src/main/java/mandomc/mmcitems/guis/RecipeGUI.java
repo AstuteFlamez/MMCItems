@@ -122,9 +122,9 @@ public class RecipeGUI implements Listener {
                 case BEACON:
                     player.openInventory(core);
                     break;
-                case NETHER_STAR:
+                /*case NETHER_STAR:
                     kyberAnimation(player);
-                    break;
+                    break;*/
             }
             if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&7Crossguard Hilt"))){
                 player.openInventory(crossGuardHilt);
@@ -225,9 +225,9 @@ public class RecipeGUI implements Listener {
                 case BEACON:
                     player.openInventory(core);
                     break;
-                case NETHER_STAR:
+                /*case NETHER_STAR:
                     kyberAnimation(player);
-                    break;
+                    break;*/
             }
             event.setCancelled(true);
         }
@@ -248,9 +248,9 @@ public class RecipeGUI implements Listener {
                 case BEACON:
                     player.openInventory(core);
                     break;
-                case NETHER_STAR:
+                /*case NETHER_STAR:
                     kyberAnimation(player);
-                    break;
+                    break;*/
             }
             event.setCancelled(true);
         }
@@ -271,9 +271,9 @@ public class RecipeGUI implements Listener {
                 case BEACON:
                     player.openInventory(core);
                     break;
-                case NETHER_STAR:
+                /*case NETHER_STAR:
                     kyberAnimation(player);
-                    break;
+                    break;*/
             }
             event.setCancelled(true);
         }

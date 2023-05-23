@@ -45,6 +45,8 @@ public class MMCGet implements CommandExecutor {
                         player.getInventory().addItem(GI.inquisitorSaber());
                     }else if(args[0].equalsIgnoreCase("kyberite")){
                         player.getInventory().addItem(GI.kyberite());
+                    }else if(args[0].equalsIgnoreCase("darksaber")){
+                        player.getInventory().addItem(GI.darksaber());
                     }else{
                         player.sendMessage(ChatColor.RED + "Incorrect Syntax! /mmcget <item> [color]");
                     }

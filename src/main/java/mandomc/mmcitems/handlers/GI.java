@@ -142,10 +142,12 @@ public class GI {
     }
 
     public static ItemStack singleBladedRed(){
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lSingle-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -157,17 +159,19 @@ public class GI {
         iM.setCustomModelData(7);
         iM.setUnbreakable(true);
         iM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        AttributeModifier iD = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 12.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier iD = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 15.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         iM.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, iD);
         i.setItemMeta(iM);
         return i;
     }
 
     public static ItemStack singleBladedBlue(){
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&9&lSingle-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -186,10 +190,12 @@ public class GI {
     }
 
     public static ItemStack singleBladedGreen(){
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lSingle-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -208,10 +214,12 @@ public class GI {
     }
 
     public static ItemStack singleBladedPurple(){
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&5&lSingle-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -230,10 +238,12 @@ public class GI {
     }
 
     public static ItemStack singleBladedYellow(){
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&e&lSingle-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -252,10 +262,12 @@ public class GI {
     }
 
     public static ItemStack singleBladedWhite(){
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f&lSingle-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -274,10 +286,12 @@ public class GI {
     }
 
     public static ItemStack doubleBladedRed(){
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lDouble-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -289,17 +303,19 @@ public class GI {
         iM.setCustomModelData(1);
         iM.setUnbreakable(true);
         iM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        AttributeModifier iD = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 12.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier iD = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 15.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         iM.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, iD);
         i.setItemMeta(iM);
         return i;
     }
 
     public static ItemStack doubleBladedBlue(){
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&9&lDouble-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -318,10 +334,12 @@ public class GI {
     }
 
     public static ItemStack doubleBladedGreen(){
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lDouble-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -340,10 +358,12 @@ public class GI {
     }
 
     public static ItemStack doubleBladedPurple(){
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&5&lDouble-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -362,10 +382,12 @@ public class GI {
     }
 
     public static ItemStack doubleBladedYellow() {
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&e&lDouble-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -384,10 +406,12 @@ public class GI {
     }
 
     public static ItemStack doubleBladedWhite() {
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f&lDouble-Bladed Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -406,10 +430,12 @@ public class GI {
     }
 
     public static ItemStack crossGuardRed() {
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lCrossguard Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -421,17 +447,19 @@ public class GI {
         iM.setCustomModelData(13);
         iM.setUnbreakable(true);
         iM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        AttributeModifier iD = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 12.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier iD = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 15.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         iM.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, iD);
         i.setItemMeta(iM);
         return i;
     }
 
     public static ItemStack crossGuardBlue() {
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&9&lCrossguard Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -450,10 +478,12 @@ public class GI {
     }
 
     public static ItemStack crossGuardGreen() {
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&a&lCrossguard Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -472,10 +502,12 @@ public class GI {
     }
 
     public static ItemStack crossGuardPurple() {
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&5&lCrossguard Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -494,10 +526,12 @@ public class GI {
     }
 
     public static ItemStack crossGuardYellow() {
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&e&lCrossguard Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -516,10 +550,12 @@ public class GI {
     }
 
     public static ItemStack crossGuardWhite() {
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&f&lCrossguard Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -538,10 +574,12 @@ public class GI {
     }
 
     public static ItemStack dookuSaber() {
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lDooku's Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -553,17 +591,19 @@ public class GI {
         iM.setCustomModelData(19);
         iM.setUnbreakable(true);
         iM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
-        AttributeModifier iD = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 12.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        AttributeModifier iD = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 18.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
         iM.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, iD);
         i.setItemMeta(iM);
         return i;
     }
 
     public static ItemStack inquisitorSaber() {
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&c&lInquisitors's Lightsaber"));
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
@@ -573,6 +613,30 @@ public class GI {
         iL.add(ChatColor.GRAY + "Saber Throw Cooldown:" + ChatColor.RED + " 10 seconds");
         iM.setLore(iL);
         iM.setCustomModelData(20);
+        iM.setUnbreakable(true);
+        iM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
+        AttributeModifier iD = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 18.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);
+        iM.addAttributeModifier(Attribute.GENERIC_ATTACK_DAMAGE, iD);
+        i.setItemMeta(iM);
+        return i;
+    }
+
+    public static ItemStack darksaber() {
+        ItemStack i = new ItemStack(Material.SHIELD);
+        ItemMeta iM = i.getItemMeta();
+        iM.setDisplayName(ChatColor.translateAlternateColorCodes('&', "&8&lDarksaber"));
+        ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
+        iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
+        iL.add("");
+        iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");
+        iL.add("");
+        iL.add(ChatColor.GOLD + "Ability: Saber Throw ->" + ChatColor.YELLOW + "" + ChatColor.BOLD + " SHIFT + LEFT CLICK");
+        iL.add(ChatColor.GRAY + "Saber Throw Damage:" + ChatColor.RED + " 24");
+        iL.add(ChatColor.GRAY + "Saber Throw Cooldown:" + ChatColor.RED + " 10 seconds");
+        iM.setLore(iL);
+        iM.setCustomModelData(21);
         iM.setUnbreakable(true);
         iM.addItemFlags(ItemFlag.HIDE_ATTRIBUTES, ItemFlag.HIDE_UNBREAKABLE);
         AttributeModifier iD = new AttributeModifier(UUID.randomUUID(), "generic.attackDamage", 12.0, AttributeModifier.Operation.ADD_NUMBER, EquipmentSlot.HAND);

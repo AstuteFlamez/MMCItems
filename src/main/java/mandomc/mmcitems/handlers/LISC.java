@@ -16,10 +16,12 @@ public class LISC {
 
     public static ItemStack createItem(String displayName, int customModelData, String nameSpacedKey, ItemStack kyber, ItemStack core, ItemStack hilt){
 
-        ItemStack i = new ItemStack(Material.NETHERITE_SWORD);
+        ItemStack i = new ItemStack(Material.SHIELD);
         ItemMeta iM = i.getItemMeta();
         iM.setDisplayName(displayName);
         ArrayList<String> iL = new ArrayList<>();
+        iL.add(ChatColor.translateAlternateColorCodes('&', "&6&l&oOptifine Required!"));
+        iL.add("");
         iL.add(ChatColor.GRAY + "\"An elegant weapon from a more civilized age.\"");
         iL.add("");
         iL.add(ChatColor.GRAY + "Melee Damage:" + ChatColor.RED + " 17");

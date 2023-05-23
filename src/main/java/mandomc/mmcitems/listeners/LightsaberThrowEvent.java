@@ -18,11 +18,11 @@ import java.util.HashMap;
 import java.util.Objects;
 import java.util.UUID;
 
-public class LightsaberThrow implements Listener {
+public class LightsaberThrowEvent implements Listener {
 
     private final HashMap<UUID, Long> lightsaberCooldown;
 
-    public LightsaberThrow(HashMap<UUID, Long> lightsaberCooldown) {
+    public LightsaberThrowEvent(HashMap<UUID, Long> lightsaberCooldown) {
         this.lightsaberCooldown = lightsaberCooldown;
     }
 
@@ -40,7 +40,7 @@ public class LightsaberThrow implements Listener {
         armorStand.setSmall(true);
         armorStand.setMarker(true);
         armorStand.setItemInHand(eggItem);
-        armorStand.setRightArmPose(new EulerAngle(Math.toRadians(90), Math.toRadians(0), Math.toRadians(0)));
+        armorStand.setRightArmPose(new EulerAngle(Math.toRadians(0), Math.toRadians(0), Math.toRadians(90)));
 
         player.getInventory().getItemInMainHand().setAmount(player.getInventory().getItemInMainHand().getAmount() - 1);
 
@@ -114,7 +114,7 @@ public class LightsaberThrow implements Listener {
         Player player = event.getPlayer();
         if ((player.isSneaking() && event.getAction() == Action.LEFT_CLICK_AIR) || (player.isSneaking() && event.getAction() == Action.LEFT_CLICK_BLOCK)) {
             ItemStack inHand = player.getItemInHand();
-            if (inHand.getType() == Material.NETHERITE_SWORD && Objects.requireNonNull(inHand.getItemMeta()).hasCustomModelData()) {
+            if (inHand.getType() == Material.SHIELD && Objects.requireNonNull(inHand.getItemMeta()).hasCustomModelData()) {
                 if (!this.lightsaberCooldown.containsKey(player.getUniqueId())) {
                     this.lightsaberCooldown.put(player.getUniqueId(), System.currentTimeMillis());
                     player.sendMessage(ChatColor.GREEN + "" + ChatColor.BOLD + "MMCITEMS" + ChatColor.DARK_GRAY + " » " + ChatColor.GOLD + "You threw your lightsaber!");

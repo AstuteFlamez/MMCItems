@@ -8,10 +8,21 @@ import org.bukkit.inventory.Inventory;
 
 public class IC {
 
+    public static Inventory xWings(Player player){
+
+        Inventory xwings = Bukkit.createInventory(player, 9, ChatColor.RED + "" + ChatColor.BOLD + "X-Wing Starfighter Customization");
+
+        xwings.setItem(3, GI.xWingColored(6, ChatColor.RED));
+        xwings.setItem(4, GI.xWingColored(7, ChatColor.DARK_GREEN));
+        xwings.setItem(5, GI.xWingColored(9, ChatColor.DARK_AQUA));
+
+        return xwings;
+    }
+
     public static Inventory recipes(Player player){
         Inventory recipes = Bukkit.createInventory(player, 9, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "MandoMC Recipes");
 
-        recipes.setItem(0, ISC.createItem(Material.NETHERITE_SWORD, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Weapon Recipes", 1, ChatColor.GRAY + "Inside you will find weapons from a more civilized age!"));
+        recipes.setItem(0, ISC.createItem(Material.SHIELD, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Weapon Recipes", 1, ChatColor.GRAY + "Inside you will find weapons from a more civilized age!"));
         recipes.setItem(1, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&2&lPart Recipes"),2,ChatColor.GRAY + "Use these recipes to create larger items!"));
         recipes.setItem(8, ISC.createItem(Material.BARRIER, ChatColor.translateAlternateColorCodes('&', "&c&lCLOSE")));
         return recipes;
@@ -20,7 +31,7 @@ public class IC {
     public static Inventory weapons(Player player){
         Inventory weapons = Bukkit.createInventory(player, 9, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Weapon Recipes");
 
-        weapons.setItem(0, ISC.createItem(Material.NETHERITE_SWORD, ChatColor.DARK_RED + "" + ChatColor.BOLD + "Lightsabers", 1, ChatColor.GRAY + "The ancient weapon of force users..."));
+        weapons.setItem(0, ISC.createItem(Material.SHIELD, ChatColor.DARK_RED + "" + ChatColor.BOLD + "Lightsabers", 1, ChatColor.GRAY + "The ancient weapon of force users..."));
         weapons.setItem(7, ISC.createItem(Material.ARROW, ChatColor.RED + "" + ChatColor.BOLD + "Back", ChatColor.GRAY + "Click to go back!"));
         weapons.setItem(8, ISC.createItem(Material.BARRIER, ChatColor.translateAlternateColorCodes('&', "&c&lCLOSE")));
         return weapons;
@@ -33,7 +44,7 @@ public class IC {
         parts.setItem(1, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&7Double-Bladed Hilt"), 4));
         parts.setItem(2, ISC.createItem(Material.WOODEN_SWORD, ChatColor.translateAlternateColorCodes('&', "&7Single-Bladed Hilt"), 5));
         parts.setItem(3, ISC.createItem(Material.BEACON, ChatColor.translateAlternateColorCodes('&', "&b&lLightsaber Core")));
-        parts.setItem(4, ISC.createItem(Material.NETHER_STAR, ChatColor.WHITE + "Kyber Crystals"));
+        /*parts.setItem(4, ISC.createItem(Material.NETHER_STAR, ChatColor.WHITE + "Kyber Crystals"));*/
         parts.setItem(7, ISC.createItem(Material.ARROW, ChatColor.translateAlternateColorCodes('&', "&c&lBack"), ChatColor.translateAlternateColorCodes('&', "&7Click to go back!")));
         parts.setItem(8, ISC.createItem(Material.BARRIER, ChatColor.translateAlternateColorCodes('&', "&c&lCLOSE")));
         return parts;
@@ -42,9 +53,9 @@ public class IC {
     public static Inventory lightsabers(Player player){
         Inventory sabers = Bukkit.createInventory(player, 9, ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Lightsaber Recipes");
 
-        sabers.setItem(0, ISC.createItem(Material.NETHERITE_SWORD, ChatColor.DARK_RED + "" + ChatColor.BOLD + "Crossguard Lightsaber Recipes", 13, ChatColor.GRAY + "An ancient lightsaber design for force users..."));
-        sabers.setItem(1, ISC.createItem(Material.NETHERITE_SWORD, ChatColor.DARK_RED + "" + ChatColor.BOLD + "Double-Bladed Lightsaber Recipes", 1, ChatColor.GRAY + "Designed to be a more agile saber."));
-        sabers.setItem(2, ISC.createItem(Material.NETHERITE_SWORD, ChatColor.BLUE + "" + ChatColor.BOLD + "Single-Bladed Lightsaber Recipes", 8, ChatColor.GRAY + "Basic, but good too."));
+        sabers.setItem(0, ISC.createItem(Material.SHIELD, ChatColor.DARK_RED + "" + ChatColor.BOLD + "Crossguard Lightsaber Recipes", 13, ChatColor.GRAY + "An ancient lightsaber design for force users..."));
+        sabers.setItem(1, ISC.createItem(Material.SHIELD, ChatColor.DARK_RED + "" + ChatColor.BOLD + "Double-Bladed Lightsaber Recipes", 1, ChatColor.GRAY + "Designed to be a more agile saber."));
+        sabers.setItem(2, ISC.createItem(Material.SHIELD, ChatColor.BLUE + "" + ChatColor.BOLD + "Single-Bladed Lightsaber Recipes", 8, ChatColor.GRAY + "Basic, but good too."));
         sabers.setItem(7, ISC.createItem(Material.ARROW, ChatColor.RED + "" + ChatColor.BOLD + "Back", ChatColor.GRAY + "Click to go back!"));
         sabers.setItem(8, ISC.createItem(Material.BARRIER, ChatColor.translateAlternateColorCodes('&', "&c&lCLOSE")));
         return sabers;

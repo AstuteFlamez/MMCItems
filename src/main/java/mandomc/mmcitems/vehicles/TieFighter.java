@@ -31,7 +31,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
-import static mandomc.mmcitems.handlers.RandomMethods.isMobSpawningEnabled;
 
 public class TieFighter implements Listener {
 
@@ -42,6 +41,26 @@ public class TieFighter implements Listener {
 
     public static List<Vehicle> getAllTieFighters(){
         return allTieFighters;
+    }
+
+    @EventHandler
+    public void onPlayerInteract(PlayerInteractEvent event){
+
+        Player player = event.getPlayer();
+
+        if ((event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) && player.getItemInHand().getType() == Material.WOODEN_SWORD && player.getItemInHand().getItemMeta().hasCustomModelData() && player.getItemInHand().getItemMeta() != null) {
+            //checks if player spawns in a ship
+            if (player.getItemInHand().getItemMeta() != null && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_GRAY + "Tie-Fighter")) {
+                createShip(player);
+            }
+        }
+        if (event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
+            for (Vehicle tieFighter : getAllTieFighters()) {
+                if (tieFighter.getPilot() == player) {
+                    shootCannons(player);
+                }
+            }
+        }
     }
 
     public void createShip(Player player){
@@ -73,7 +92,6 @@ public class TieFighter implements Listener {
             armorStandModel.setCollidable(true);
             armorStandModel.setRotation(player.getLocation().getYaw(), 0);
             armorStandModel.setHelmet(GI.tieFighter());
-            player.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7You spawned in your &8Tie-Fighter&7!"));
 
             tieFighter.setSeat1(seat1);
             tieFighter.setModel(model);
@@ -82,6 +100,8 @@ public class TieFighter implements Listener {
 
             VehicleEvents.entitiesInShip.add(tieFighter.getSeat1());
             VehicleEvents.armorStandsInShip.add(tieFighter.getModel());
+
+            rideShip(player, tieFighter);
 
         }else{
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&cYou cannot spawn in your &8Tie-Fighter &chere!"));
@@ -125,24 +145,6 @@ public class TieFighter implements Listener {
         player.sendMessage(MMCItems.prefix + ChatColor.translateAlternateColorCodes('&', "&7You dismounted your &8Tie-Fighter&7!"));
     }
 
-    public void openGUI(Player player, Vehicle tieFighter){
-
-        String seat1;
-
-        if(tieFighter.getSeat1().getPassengers().isEmpty()){
-            seat1 = ChatColor.translateAlternateColorCodes('&', "&a&lUNOCCUPIED");
-        }else{
-            seat1 = ChatColor.translateAlternateColorCodes('&', "&c&lOCCUPIED");
-        }
-
-        tieFighter.setSeat1Item(4);
-
-        Inventory tieFighterGUI = Bukkit.createInventory(player, 54, ChatColor.BLACK + "Tie-Fighter");
-        tieFighterGUI.setItem(22, ISC.createItem(Material.WOODEN_HOE, ChatColor.translateAlternateColorCodes('&', "&e&lPilot Seat"), 4, ChatColor.GRAY + "Click to enter the pilot's seat!", "", seat1));
-
-        player.openInventory(tieFighterGUI);
-    }
-
     public void shootCannons(Player player) {
         if (!this.cannonsCooldown.containsKey(player.getUniqueId())) {
             this.cannonsCooldown.put(player.getUniqueId(), System.currentTimeMillis());
@@ -179,39 +181,6 @@ public class TieFighter implements Listener {
     }
 
     @EventHandler
-    public void onPlayerInteract(PlayerInteractEvent event){
-
-        Player player = event.getPlayer();
-
-        if ((event.getAction().equals(Action.RIGHT_CLICK_AIR) || event.getAction().equals(Action.RIGHT_CLICK_BLOCK)) && player.getItemInHand().getType() == Material.WOODEN_SWORD && player.getItemInHand().getItemMeta().hasCustomModelData() && player.getItemInHand().getItemMeta() != null) {
-            //checks if player spawns in a ship
-            if (player.getItemInHand().getItemMeta() != null && player.getItemInHand().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_GRAY + "Tie-Fighter")) {
-                createShip(player);
-            }
-        }
-        if (event.getAction().equals(Action.LEFT_CLICK_AIR) || event.getAction().equals(Action.LEFT_CLICK_BLOCK)) {
-            for (Vehicle tieFighter : getAllTieFighters()){
-                if(tieFighter.getPilot() == player){
-                    shootCannons(player);
-                }
-            }
-        }
-    }
-
-    @EventHandler
-    public void onPlayerInteractEntity(PlayerInteractAtEntityEvent event) {
-
-        Entity entity = event.getRightClicked();
-        Player player = event.getPlayer();
-
-        for(Vehicle tieFighter: getAllTieFighters()){
-            if(tieFighter.getModel() == entity){
-                openGUI(player, tieFighter);
-            }
-        }
-    }
-
-    @EventHandler
     public void dismount(EntityDismountEvent event){
 
         Entity entity = event.getDismounted();
@@ -221,30 +190,6 @@ public class TieFighter implements Listener {
             if(tieFighter.getSeat1() == entity && event.getEntity() instanceof Player){
                 Player player = (Player) event.getEntity();
                 removeShip(player, tieFighter);
-            }
-        }
-    }
-
-    @EventHandler
-    public void inventoryClick(InventoryClickEvent event){
-
-        Player player = (Player) event.getWhoClicked();
-
-        if (event.getView().getTitle().equalsIgnoreCase(ChatColor.BLACK + "Tie-Fighter")){
-            event.setCancelled(true);
-            if (event.getCurrentItem() != null) {
-                for (Vehicle tieFighter : getAllTieFighters()) {
-                    if (event.getCurrentItem().getItemMeta().getCustomModelData() == tieFighter.getSeat1Item()) {
-                        switch (event.getCurrentItem().getItemMeta().getCustomModelData()) {
-                            case 4:
-                                event.setCancelled(true);
-                                player.closeInventory();
-                                if (tieFighter.getSeat1().getPassengers().isEmpty()) {
-                                    rideShip(player, tieFighter);
-                                }
-                        }
-                    }
-                }
             }
         }
     }
