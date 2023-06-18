@@ -62,22 +62,21 @@ public class RecipeGUI implements Listener {
 
         if ((event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "MandoMC Recipes"))) {
             switch (event.getCurrentItem().getType()) {
-                case NETHERITE_SWORD:
+                case SHIELD:
                     player.openInventory(weapons);
                     break;
                 case BARRIER:
                     player.closeInventory();
                     break;
-            }
-            if(event.getCurrentItem().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Part Recipes")){
-                player.openInventory(parts);
+                case WOODEN_SWORD:
+                    player.openInventory(parts);
             }
             event.setCancelled(true);
         }
 
         if ((event.getView().getTitle().equalsIgnoreCase(ChatColor.DARK_GREEN + "" + ChatColor.BOLD + "Weapon Recipes"))) {
             switch (event.getCurrentItem().getType()) {
-                case NETHERITE_SWORD:
+                case SHIELD:
                     player.openInventory(lightsabers);
                     break;
                 case ARROW:

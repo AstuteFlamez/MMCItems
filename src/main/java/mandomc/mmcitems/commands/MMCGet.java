@@ -23,8 +23,6 @@ public class MMCGet implements CommandExecutor {
                 }else if(args.length == 1){
                     if(args[0].equalsIgnoreCase("xwing")){
                         player.getInventory().addItem(GI.xWing());
-                    }else if(args[0].equalsIgnoreCase("n1")){
-                        player.getInventory().addItem(GI.n1());
                     }else if(args[0].equalsIgnoreCase("tie")){
                         player.getInventory().addItem(GI.tieFighter());
                     }else if(args[0].equalsIgnoreCase("lightsaberCore")){
